@@ -3,21 +3,7 @@
 import { useState } from 'react'
 import Section from '@/components/Section'
 import Container from '@/components/Container'
-imp        <Container>
-          <div className="text-center mb-16 square-box-beige p-8">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
-              Strategic Planning
-            </h2>
-            <p className="text-lg text-yb-navy-light max-w-2xl mx-auto">
-              Raw data becomes strategic advantage through our proven planning methodology.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <Card className="p-8 square-box">
-              <h3 className="font-heading text-xl font-semibold text-yb-navy mb-6">
-                Competitive Strategy Map
-              </h3>@/components/Card'
+import Card from '@/components/Card'
 import Button from '@/components/Button'
 
 export default function OurProcess() {
@@ -115,7 +101,7 @@ export default function OurProcess() {
           <div className="mb-16">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {processSteps.map((step, index) => (
-                <Card key={index} className="p-6 text-center cursor-pointer hover:shadow-lg transition-all duration-300" onClick={() => toggleStep(index)}>
+                <Card key={index} className="p-6 text-center cursor-pointer hover:shadow-lg transition-all duration-300 square-box" onClick={() => toggleStep(index)}>
                   <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-yb-navy font-bold text-xl">{index + 1}</span>
                   </div>
@@ -153,7 +139,7 @@ export default function OurProcess() {
       {/* Detailed Sections for Each Phase */}
       <Section background="beige" padding="xl">
         <Container>
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 square-box-beige p-8">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
               Strategic Planning Phase
             </h2>
@@ -163,7 +149,7 @@ export default function OurProcess() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <Card className="p-8">
+            <Card className="p-8 square-box">
               <h3 className="font-heading text-xl font-semibold text-yb-navy mb-6">
                 Competitive Strategy Map
               </h3>
@@ -198,7 +184,7 @@ export default function OurProcess() {
               </div>
             </Card>
 
-            <Card className="p-8">
+            <Card className="p-8 square-box">
               <h3 className="font-heading text-xl font-semibold text-yb-navy mb-6">
                 Priority Framework
               </h3>
@@ -227,7 +213,7 @@ export default function OurProcess() {
       {/* Creative Development Section */}
       <Section background="white" padding="xl">
         <Container>
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 square-box-beige p-8">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
               Creative Development
             </h2>
@@ -237,7 +223,7 @@ export default function OurProcess() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-center square-box">
               <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-yb-navy font-bold">🎨</span>
               </div>
@@ -249,7 +235,7 @@ export default function OurProcess() {
               </p>
             </Card>
 
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-center square-box">
               <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-yb-navy font-bold">📝</span>
               </div>
@@ -261,7 +247,7 @@ export default function OurProcess() {
               </p>
             </Card>
 
-            <Card className="p-6 text-center">
+            <Card className="p-6 text-center square-box">
               <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-yb-navy font-bold">⚡</span>
               </div>
@@ -279,7 +265,7 @@ export default function OurProcess() {
       {/* Technical Excellence Section */}
       <Section background="navy" padding="xl">
         <Container>
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 square-box-navy p-8">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-white mb-4">
               Technical Excellence
             </h2>
@@ -289,19 +275,19 @@ export default function OurProcess() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="p-6 bg-yb-beige bg-opacity-10 text-center">
+            <Card className="p-6 bg-yb-beige bg-opacity-10 text-center square-box">
               <div className="text-3xl font-bold text-yb-beige mb-2">&lt;3s</div>
               <p className="text-yb-beige-light text-sm">Page Load Time</p>
             </Card>
-            <Card className="p-6 bg-yb-beige bg-opacity-10 text-center">
+            <Card className="p-6 bg-yb-beige bg-opacity-10 text-center square-box">
               <div className="text-3xl font-bold text-yb-beige mb-2">100</div>
               <p className="text-yb-beige-light text-sm">Lighthouse Score</p>
             </Card>
-            <Card className="p-6 bg-yb-beige bg-opacity-10 text-center">
+            <Card className="p-6 bg-yb-beige bg-opacity-10 text-center square-box">
               <div className="text-3xl font-bold text-yb-beige mb-2">A+</div>
               <p className="text-yb-beige-light text-sm">Security Grade</p>
             </Card>
-            <Card className="p-6 bg-yb-beige bg-opacity-10 text-center">
+            <Card className="p-6 bg-yb-beige bg-opacity-10 text-center square-box">
               <div className="text-3xl font-bold text-yb-beige mb-2">99.9%</div>
               <p className="text-yb-beige-light text-sm">Uptime</p>
             </Card>
@@ -312,7 +298,7 @@ export default function OurProcess() {
       {/* Continuous Optimization */}
       <Section background="beige" padding="xl">
         <Container>
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 square-box-beige p-8">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
               Continuous Optimization
             </h2>
@@ -323,7 +309,7 @@ export default function OurProcess() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Analytics Dashboard Preview */}
-            <Card className="p-8">
+            <Card className="p-8 square-box">
               <h3 className="font-heading text-xl font-semibold text-yb-navy mb-6">
                 Performance Monitoring
               </h3>
@@ -349,7 +335,7 @@ export default function OurProcess() {
               </div>
             </Card>
 
-            <Card className="p-8">
+            <Card className="p-8 square-box">
               <h3 className="font-heading text-xl font-semibold text-yb-navy mb-6">
                 Competitive Monitoring
               </h3>

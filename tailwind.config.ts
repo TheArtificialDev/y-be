@@ -11,9 +11,10 @@ const config: Config = {
       colors: {
         // Y-Be Brand Colors
         'yb-navy': {
-          DEFAULT: '#2D3A4E',
-          dark: '#1F2937',
-          light: '#4B5563',
+          DEFAULT: '#1A2332',
+          dark: '#0F1419',
+          light: '#2D3A4E',
+          darker: '#0A0E14',
         },
         'yb-beige': {
           DEFAULT: '#D9BBA4',

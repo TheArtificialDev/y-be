@@ -16,7 +16,7 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <nav className="bg-yb-navy shadow-organic sticky top-0 z-50 border-b border-yb-beige/20">
+    <nav className="bg-yb-navy-dark shadow-organic sticky top-0 z-50 border-b border-yb-beige/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -83,7 +83,7 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-yb-navy border-t border-yb-beige/20">
+        <div className="md:hidden bg-yb-navy-dark border-t border-yb-beige/20">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <Link

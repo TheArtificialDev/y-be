@@ -15,7 +15,7 @@ const legalLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-yb-navy text-yb-beige py-16 border-t border-yb-beige/20">
+    <footer className="bg-yb-navy-dark text-yb-beige py-16 border-t border-yb-beige/20">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}

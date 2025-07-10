@@ -301,95 +301,95 @@ export default function GettingStarted() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-8 bg-white relative square-box-beige">
+            <Card className="p-8 relative square-box-beige">
               <div className="text-center">
-                <h3 className="font-heading text-xl font-bold text-yb-navy mb-2">Starter</h3>
-                <div className="text-3xl font-bold text-yb-navy mb-4">$5,000 - $15,000</div>
-                <div className="text-yb-navy-light mb-6">Perfect for small businesses ready to compete</div>
-                <ul className="text-left space-y-3 text-sm text-yb-navy-light mb-8">
+                <h3 className="font-heading text-xl font-bold text-yb-beige mb-2">Starter</h3>
+                <div className="text-3xl font-bold text-yb-beige mb-4">$5,000 - $15,000</div>
+                <div className="text-yb-beige-light mb-6">Perfect for small businesses ready to compete</div>
+                <ul className="text-left space-y-3 text-sm text-yb-beige-light mb-8">
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     Competitive analysis (5 competitors)
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     Strategic brand positioning
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     Professional website design
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     Basic SEO optimization
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     3 months support
                   </li>
                 </ul>
               </div>
             </Card>
 
-            <Card className="p-8 bg-white relative border-2 border-yb-beige square-box-beige">
+            <Card className="p-8 relative border-2 border-yb-beige square-box-beige">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span className="bg-yb-beige text-yb-navy px-4 py-2 rounded-full text-sm font-medium">
                   Most Popular
                 </span>
               </div>
               <div className="text-center">
-                <h3 className="font-heading text-xl font-bold text-yb-navy mb-2">Growth</h3>
-                <div className="text-3xl font-bold text-yb-navy mb-4">$15,000 - $35,000</div>
-                <div className="text-yb-navy-light mb-6">For businesses ready to dominate their market</div>
-                <ul className="text-left space-y-3 text-sm text-yb-navy-light mb-8">
+                <h3 className="font-heading text-xl font-bold text-yb-beige mb-2">Growth</h3>
+                <div className="text-3xl font-bold text-yb-beige mb-4">$15,000 - $35,000</div>
+                <div className="text-yb-beige-light mb-6">For businesses ready to dominate their market</div>
+                <ul className="text-left space-y-3 text-sm text-yb-beige-light mb-8">
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     Deep competitive analysis (10 competitors)
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     Complete brand strategy
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     Advanced website & UX design
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     Comprehensive SEO strategy
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     6 months optimization
                   </li>
                 </ul>
               </div>
             </Card>
 
-            <Card className="p-8 bg-white relative square-box-beige">
+            <Card className="p-8 relative square-box-beige">
               <div className="text-center">
-                <h3 className="font-heading text-xl font-bold text-yb-navy mb-2">Enterprise</h3>
-                <div className="text-3xl font-bold text-yb-navy mb-4">$35,000+</div>
-                <div className="text-yb-navy-light mb-6">For market leaders and rapid scaling</div>
-                <ul className="text-left space-y-3 text-sm text-yb-navy-light mb-8">
+                <h3 className="font-heading text-xl font-bold text-yb-beige mb-2">Enterprise</h3>
+                <div className="text-3xl font-bold text-yb-beige mb-4">$35,000+</div>
+                <div className="text-yb-beige-light mb-6">For market leaders and rapid scaling</div>
+                <ul className="text-left space-y-3 text-sm text-yb-beige-light mb-8">
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     Full market intelligence
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     Complete brand ecosystem
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     Custom platform development
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     Advanced analytics & automation
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-500 mr-2">✓</span>
+                    <span className="text-green-400 mr-2">✓</span>
                     12 months strategic partnership
                   </li>
                 </ul>
@@ -417,11 +417,11 @@ export default function GettingStarted() {
                 <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-yb-navy font-bold">1</span>
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-yb-navy mb-2">
+                <h3 className="font-heading text-lg font-semibold text-yb-beige mb-2">
                   Discovery
                 </h3>
-                <p className="text-yb-navy-light text-sm mb-2">1 Week</p>
-                <p className="text-yb-navy-light text-xs">
+                <p className="text-yb-beige-light text-sm mb-2">1 Week</p>
+                <p className="text-yb-beige-light text-xs">
                   Deep competitive analysis and strategic planning
                 </p>
               </Card>
@@ -430,11 +430,11 @@ export default function GettingStarted() {
                 <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-yb-navy font-bold">2</span>
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-yb-navy mb-2">
+                <h3 className="font-heading text-lg font-semibold text-yb-beige mb-2">
                   Strategy & Design
                 </h3>
-                <p className="text-yb-navy-light text-sm mb-2">2-3 Weeks</p>
-                <p className="text-yb-navy-light text-xs">
+                <p className="text-yb-beige-light text-sm mb-2">2-3 Weeks</p>
+                <p className="text-yb-beige-light text-xs">
                   Brand positioning and creative development
                 </p>
               </Card>
@@ -443,11 +443,11 @@ export default function GettingStarted() {
                 <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-yb-navy font-bold">3</span>
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-yb-navy mb-2">
+                <h3 className="font-heading text-lg font-semibold text-yb-beige mb-2">
                   Development
                 </h3>
-                <p className="text-yb-navy-light text-sm mb-2">2-4 Weeks</p>
-                <p className="text-yb-navy-light text-xs">
+                <p className="text-yb-beige-light text-sm mb-2">2-4 Weeks</p>
+                <p className="text-yb-beige-light text-xs">
                   Technical implementation and optimization
                 </p>
               </Card>
@@ -456,11 +456,11 @@ export default function GettingStarted() {
                 <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-yb-navy font-bold">4</span>
                 </div>
-                <h3 className="font-heading text-lg font-semibold text-yb-navy mb-2">
+                <h3 className="font-heading text-lg font-semibold text-yb-beige mb-2">
                   Launch & Optimize
                 </h3>
-                <p className="text-yb-navy-light text-sm mb-2">Ongoing</p>
-                <p className="text-yb-navy-light text-xs">
+                <p className="text-yb-beige-light text-sm mb-2">Ongoing</p>
+                <p className="text-yb-beige-light text-xs">
                   Continuous monitoring and improvement
                 </p>
               </Card>

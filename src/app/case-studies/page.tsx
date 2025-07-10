@@ -152,7 +152,7 @@ export default function CaseStudies() {
           {/* Case Studies Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {filteredCaseStudies.map((study) => (
-              <Card key={study.id} className="p-8 hover:shadow-lg transition-all duration-300">
+              <Card key={study.id} className="p-8 hover:shadow-lg transition-all duration-300 square-box">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="font-heading text-xl font-bold text-yb-navy">{study.client}</h3>
                   <span className="bg-yb-beige bg-opacity-30 text-yb-navy px-3 py-1 rounded-full text-sm font-medium">
@@ -209,82 +209,82 @@ export default function CaseStudies() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-6 bg-white square-box-beige">
-              <h3 className="font-heading text-lg font-semibold text-yb-navy mb-4">Performance Metrics</h3>
+            <Card className="p-6 square-box-beige">
+              <h3 className="font-heading text-lg font-semibold text-yb-beige mb-4">Performance Metrics</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-yb-navy-light text-sm">Page Load Speed</span>
+                  <span className="text-yb-beige-light text-sm">Page Load Speed</span>
                   <div className="text-right">
-                    <div className="text-red-500 text-sm line-through">4.2s</div>
-                    <div className="text-green-500 text-sm font-medium">1.8s</div>
+                    <div className="text-red-400 text-sm line-through">4.2s</div>
+                    <div className="text-green-400 text-sm font-medium">1.8s</div>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-yb-navy-light text-sm">Bounce Rate</span>
+                  <span className="text-yb-beige-light text-sm">Bounce Rate</span>
                   <div className="text-right">
-                    <div className="text-red-500 text-sm line-through">67%</div>
-                    <div className="text-green-500 text-sm font-medium">23%</div>
+                    <div className="text-red-400 text-sm line-through">67%</div>
+                    <div className="text-green-400 text-sm font-medium">23%</div>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-yb-navy-light text-sm">Conversion Rate</span>
+                  <span className="text-yb-beige-light text-sm">Conversion Rate</span>
                   <div className="text-right">
-                    <div className="text-red-500 text-sm line-through">1.2%</div>
-                    <div className="text-green-500 text-sm font-medium">3.8%</div>
+                    <div className="text-red-400 text-sm line-through">1.2%</div>
+                    <div className="text-green-400 text-sm font-medium">3.8%</div>
                   </div>
                 </div>
               </div>
             </Card>
 
-            <Card className="p-6 bg-white square-box-beige">
-              <h3 className="font-heading text-lg font-semibold text-yb-navy mb-4">Search Rankings</h3>
+            <Card className="p-6 square-box-beige">
+              <h3 className="font-heading text-lg font-semibold text-yb-beige mb-4">Search Rankings</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-yb-navy-light text-sm">Primary Keywords</span>
+                  <span className="text-yb-beige-light text-sm">Primary Keywords</span>
                   <div className="text-right">
-                    <div className="text-red-500 text-sm line-through">Page 3</div>
-                    <div className="text-green-500 text-sm font-medium">Position 1-3</div>
+                    <div className="text-red-400 text-sm line-through">Page 3</div>
+                    <div className="text-green-400 text-sm font-medium">Position 1-3</div>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-yb-navy-light text-sm">Organic Traffic</span>
+                  <span className="text-yb-beige-light text-sm">Organic Traffic</span>
                   <div className="text-right">
-                    <div className="text-red-500 text-sm line-through">2,100/mo</div>
-                    <div className="text-green-500 text-sm font-medium">8,400/mo</div>
+                    <div className="text-red-400 text-sm line-through">2,100/mo</div>
+                    <div className="text-green-400 text-sm font-medium">8,400/mo</div>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-yb-navy-light text-sm">Domain Authority</span>
+                  <span className="text-yb-beige-light text-sm">Domain Authority</span>
                   <div className="text-right">
-                    <div className="text-red-500 text-sm line-through">DA 23</div>
-                    <div className="text-green-500 text-sm font-medium">DA 47</div>
+                    <div className="text-red-400 text-sm line-through">DA 23</div>
+                    <div className="text-green-400 text-sm font-medium">DA 47</div>
                   </div>
                 </div>
               </div>
             </Card>
 
-            <Card className="p-6 bg-white square-box-beige">
-              <h3 className="font-heading text-lg font-semibold text-yb-navy mb-4">Business Impact</h3>
+            <Card className="p-6 square-box-beige">
+              <h3 className="font-heading text-lg font-semibold text-yb-beige mb-4">Business Impact</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-yb-navy-light text-sm">Monthly Leads</span>
+                  <span className="text-yb-beige-light text-sm">Monthly Leads</span>
                   <div className="text-right">
-                    <div className="text-red-500 text-sm line-through">47</div>
-                    <div className="text-green-500 text-sm font-medium">178</div>
+                    <div className="text-red-400 text-sm line-through">47</div>
+                    <div className="text-green-400 text-sm font-medium">178</div>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-yb-navy-light text-sm">Avg. Deal Size</span>
+                  <span className="text-yb-beige-light text-sm">Avg. Deal Size</span>
                   <div className="text-right">
-                    <div className="text-red-500 text-sm line-through">$3,200</div>
-                    <div className="text-green-500 text-sm font-medium">$5,800</div>
+                    <div className="text-red-400 text-sm line-through">$3,200</div>
+                    <div className="text-green-400 text-sm font-medium">$5,800</div>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-yb-navy-light text-sm">Market Position</span>
+                  <span className="text-yb-beige-light text-sm">Market Position</span>
                   <div className="text-right">
-                    <div className="text-red-500 text-sm line-through">#8</div>
-                    <div className="text-green-500 text-sm font-medium">#2</div>
+                    <div className="text-red-400 text-sm line-through">#8</div>
+                    <div className="text-green-400 text-sm font-medium">#2</div>
                   </div>
                 </div>
               </div>
@@ -362,13 +362,13 @@ export default function CaseStudies() {
               { metric: "4.2x", detail: "Market Share", industry: "Professional Services" },
               { metric: "+156%", detail: "Brand Authority", industry: "Healthcare" }
             ].map((result, index) => (
-              <Card key={index} className="p-6 bg-white hover:shadow-lg transition-all duration-300 group">
+              <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 group square-box">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-yb-navy mb-2 group-hover:text-yb-beige transition-colors">
+                  <div className="text-3xl font-bold text-yb-beige mb-2 group-hover:text-yb-beige-light transition-colors">
                     {result.metric}
                   </div>
-                  <div className="text-yb-navy-light text-sm mb-2">{result.detail}</div>
-                  <div className="text-xs text-yb-navy bg-yb-beige bg-opacity-20 px-2 py-1 rounded-full">
+                  <div className="text-yb-beige-light text-sm mb-2">{result.detail}</div>
+                  <div className="text-xs text-yb-navy bg-yb-beige bg-opacity-80 px-2 py-1 rounded-full">
                     {result.industry}
                   </div>
                 </div>

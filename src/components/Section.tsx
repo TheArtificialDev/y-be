@@ -18,7 +18,7 @@ export default function Section({
   const backgroundClasses = {
     white: 'bg-yb-beige text-yb-navy',
     beige: 'bg-yb-beige text-yb-navy',
-    navy: 'bg-yb-navy text-yb-beige',
+    navy: 'bg-yb-navy-dark text-yb-beige',
   }
   
   const paddingClasses = {

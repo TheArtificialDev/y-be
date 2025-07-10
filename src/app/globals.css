@@ -3,16 +3,17 @@
 /* Y-Be Brand Colors - Dark Theme */
 :root {
   /* Primary Brand Colors */
-  --yb-navy: #2D3A4E;
-  --yb-navy-dark: #1F2937;
-  --yb-navy-light: #4B5563;
+  --yb-navy: #1A2332;
+  --yb-navy-dark: #0F1419;
+  --yb-navy-light: #2D3A4E;
+  --yb-navy-darker: #0A0E14;
   --yb-beige: #D9BBA4;
   --yb-beige-dark: #C4A485;
   --yb-beige-light: #E8D5C4;
   --yb-white: #FFFFFF;
   
   /* Dark Theme Colors */
-  --background: var(--yb-navy);
+  --background: var(--yb-navy-dark);
   --foreground: var(--yb-beige);
   --accent: var(--yb-beige);
   --accent-foreground: var(--yb-navy);
@@ -102,14 +103,31 @@
   border-radius: 2rem;
 }
 
-/* Global Styles */
+/* Global Styles - Force Dark Background */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #0F1419 !important;
+}
+
 body {
-  background: var(--background);
+  background-color: #0F1419 !important;
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  background-color: #0F1419 !important;
+}
+
+/* Force dark background for any divs that don't have explicit background classes */
+div:not([class*="bg-"]) {
+  background-color: transparent;
 }
 
 /* Animations */
@@ -291,40 +309,40 @@ body {
 
 /* Square boxes for non-home pages */
 .square-box {
-  border: 2px solid rgba(217, 187, 164, 0.3);
+  border: 2px solid rgba(217, 187, 164, 0.4);
   border-radius: 0;
-  background: rgba(217, 187, 164, 0.05);
+  background: var(--yb-navy-dark);
   transition: all 0.3s ease;
 }
 
 .square-box:hover {
-  border-color: rgba(217, 187, 164, 0.5);
-  background: rgba(217, 187, 164, 0.1);
+  border-color: rgba(217, 187, 164, 0.6);
+  background: var(--yb-navy-darker);
   box-shadow: 0 4px 16px rgba(217, 187, 164, 0.2);
 }
 
 .square-box-navy {
-  border: 2px solid rgba(45, 58, 78, 0.3);
+  border: 2px solid rgba(217, 187, 164, 0.4);
   border-radius: 0;
-  background: rgba(45, 58, 78, 0.05);
+  background: var(--yb-navy-dark);
   transition: all 0.3s ease;
 }
 
 .square-box-navy:hover {
-  border-color: rgba(45, 58, 78, 0.5);
-  background: rgba(45, 58, 78, 0.1);
-  box-shadow: 0 4px 16px rgba(45, 58, 78, 0.2);
+  border-color: rgba(217, 187, 164, 0.6);
+  background: var(--yb-navy-darker);
+  box-shadow: 0 4px 16px rgba(217, 187, 164, 0.2);
 }
 
 .square-box-beige {
-  border: 2px solid rgba(217, 187, 164, 0.3);
+  border: 2px solid rgba(217, 187, 164, 0.4);
   border-radius: 0;
-  background: var(--yb-beige);
+  background: var(--yb-navy-dark);
   transition: all 0.3s ease;
 }
 
 .square-box-beige:hover {
-  border-color: rgba(217, 187, 164, 0.5);
-  background: var(--yb-beige-light);
+  border-color: rgba(217, 187, 164, 0.6);
+  background: var(--yb-navy-darker);
   box-shadow: 0 4px 16px rgba(217, 187, 164, 0.2);
 }
