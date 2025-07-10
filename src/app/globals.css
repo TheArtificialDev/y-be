@@ -1,26 +1,152 @@
 @import "tailwindcss";
 
+/* Y-Be Brand Colors */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Brand Colors */
+  --yb-navy: #2D3A4E;
+  --yb-navy-dark: #1F2937;
+  --yb-navy-light: #4B5563;
+  --yb-beige: #D9BBA4;
+  --yb-beige-dark: #C4A485;
+  --yb-beige-light: #E8D5C4;
+  --yb-white: #FFFFFF;
+  
+  /* Semantic Colors */
+  --background: var(--yb-white);
+  --foreground: var(--yb-navy);
+  --accent: var(--yb-beige);
+  --accent-foreground: var(--yb-navy);
+  
+  /* Interactive States */
+  --hover: var(--yb-beige-dark);
+  --focus: var(--yb-navy-light);
+  --active: var(--yb-navy-dark);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Typography Classes */
+.font-heading {
+  font-family: 'Truetypewriter', 'Metamorphous', serif;
+  font-weight: 600;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Y-Be Component Styles */
+.yb-section {
+  padding: 4rem 0;
 }
 
+.yb-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.yb-card {
+  background: var(--yb-white);
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 20px -4px rgb(45 58 78 / 0.12), 0 4px 8px -2px rgb(45 58 78 / 0.08);
+  transition: all 0.3s ease;
+}
+
+.yb-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -6px rgb(45 58 78 / 0.15), 0 6px 12px -3px rgb(45 58 78 / 0.1);
+}
+
+.yb-btn-primary {
+  background: var(--yb-beige);
+  color: var(--yb-navy);
+  border: none;
+  border-radius: 1.25rem;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.yb-btn-primary:hover {
+  background: var(--yb-beige-dark);
+  transform: translateY(-2px);
+}
+
+.yb-btn-secondary {
+  background: transparent;
+  color: var(--yb-navy);
+  border: 2px solid var(--yb-navy);
+  border-radius: 1.25rem;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.yb-btn-secondary:hover {
+  background: var(--yb-navy);
+  color: var(--yb-white);
+}
+
+/* Organic Curves */
+.yb-curve {
+  border-radius: 1.25rem;
+}
+
+.yb-curve-sm {
+  border-radius: 0.75rem;
+}
+
+.yb-curve-lg {
+  border-radius: 2rem;
+}
+
+/* Global Styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(20px); 
+    opacity: 0; 
+  }
+  to { 
+    transform: translateY(0); 
+    opacity: 1; 
+  }
+}
+
+@keyframes slideIn {
+  from { 
+    transform: translateX(-20px); 
+    opacity: 0; 
+  }
+  to { 
+    transform: translateX(0); 
+    opacity: 1; 
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
 }
