@@ -125,6 +125,13 @@ main {
   background-color: #0F1419 !important;
 }
 
+/* Force navbar to be completely opaque */
+nav {
+  background-color: #0F1419 !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+}
+
 /* Force dark background for any divs that don't have explicit background classes */
 div:not([class*="bg-"]) {
   background-color: transparent;

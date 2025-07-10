@@ -39,6 +39,11 @@ export const metadata: Metadata = {
   creator: "Y-Be",
   publisher: "Y-Be",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://ybe.studio'),
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     title: "Y-Be | Engineering Competitive Advantages",
     description: "We don&apos;t just build websites, we engineer competitive advantages through data-driven web solutions.",

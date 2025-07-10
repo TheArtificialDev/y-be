@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
@@ -8,7 +9,6 @@ const navItems = [
   { name: 'Home', href: '/' },
   { name: 'Our Process', href: '/our-process' },
   { name: 'Case Studies', href: '/case-studies' },
-  { name: 'Get Started', href: '/getting-started' },
 ]
 
 export default function Navigation() {
@@ -16,16 +16,20 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <nav className="bg-yb-navy-dark shadow-organic sticky top-0 z-50 border-b border-yb-beige/20">
+    <nav className="bg-yb-navy-dark sticky top-0 z-50 border-b border-yb-beige" style={{ backgroundColor: '#0F1419', opacity: 1 }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <span className="font-heading text-2xl font-bold text-yb-beige">
-                Y-Be
-              </span>
-              <span className="ml-2 text-sm text-yb-beige/80 hidden sm:block">
+              <Image 
+                src="/logo.png" 
+                alt="Y-Be Logo" 
+                width={32}
+                height={32}
+                className="h-8 w-auto"
+              />
+              <span className="ml-3 text-sm text-yb-beige hidden sm:block">
                 Engineering Competitive Advantages
               </span>
             </Link>
@@ -40,7 +44,7 @@ export default function Navigation() {
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
                   pathname === item.href
                     ? 'text-yb-navy bg-yb-beige border-b-2 border-yb-beige'
-                    : 'text-yb-beige/80 hover:text-yb-beige hover:bg-yb-beige/10'
+                    : 'text-yb-beige hover:text-yb-beige hover:bg-yb-navy-light'
                 }`}
               >
                 {item.name}
@@ -58,7 +62,7 @@ export default function Navigation() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-yb-beige hover:text-yb-beige/80 p-2 rounded-md transition-colors"
+              className="text-yb-beige hover:text-yb-beige-light p-2 rounded-md transition-colors"
               aria-label="Open menu"
             >
               <svg
@@ -83,7 +87,7 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-yb-navy-dark border-t border-yb-beige/20">
+        <div className="md:hidden bg-yb-navy-dark border-t border-yb-beige">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <Link
@@ -92,7 +96,7 @@ export default function Navigation() {
                 className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                   pathname === item.href
                     ? 'text-yb-navy bg-yb-beige'
-                    : 'text-yb-beige/80 hover:text-yb-beige hover:bg-yb-beige/10'
+                    : 'text-yb-beige hover:text-yb-beige hover:bg-yb-navy-light'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
