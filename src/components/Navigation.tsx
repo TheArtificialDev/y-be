@@ -16,16 +16,16 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <nav className="bg-yb-white shadow-organic sticky top-0 z-50">
+    <nav className="bg-yb-navy shadow-organic sticky top-0 z-50 border-b border-yb-beige/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
-              <span className="font-heading text-2xl font-bold text-yb-navy">
+              <span className="font-heading text-2xl font-bold text-yb-beige">
                 Y-Be
               </span>
-              <span className="ml-2 text-sm text-yb-navy-light hidden sm:block">
+              <span className="ml-2 text-sm text-yb-beige/80 hidden sm:block">
                 Engineering Competitive Advantages
               </span>
             </Link>
@@ -39,8 +39,8 @@ export default function Navigation() {
                 href={item.href}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
                   pathname === item.href
-                    ? 'text-yb-navy bg-yb-beige-light border-b-2 border-yb-beige'
-                    : 'text-yb-navy-light hover:text-yb-navy hover:bg-yb-beige-light'
+                    ? 'text-yb-navy bg-yb-beige border-b-2 border-yb-beige'
+                    : 'text-yb-beige/80 hover:text-yb-beige hover:bg-yb-beige/10'
                 }`}
               >
                 {item.name}
@@ -58,7 +58,7 @@ export default function Navigation() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-yb-navy hover:text-yb-navy-light p-2 rounded-md transition-colors"
+              className="text-yb-beige hover:text-yb-beige/80 p-2 rounded-md transition-colors"
               aria-label="Open menu"
             >
               <svg
@@ -83,7 +83,7 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-yb-white border-t border-yb-beige-light">
+        <div className="md:hidden bg-yb-navy border-t border-yb-beige/20">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <Link
@@ -91,8 +91,8 @@ export default function Navigation() {
                 href={item.href}
                 className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                   pathname === item.href
-                    ? 'text-yb-navy bg-yb-beige-light'
-                    : 'text-yb-navy-light hover:text-yb-navy hover:bg-yb-beige-light'
+                    ? 'text-yb-navy bg-yb-beige'
+                    : 'text-yb-beige/80 hover:text-yb-beige hover:bg-yb-beige/10'
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >

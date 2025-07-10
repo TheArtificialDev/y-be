@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Y-Be Brand Colors */
+/* Y-Be Brand Colors - Dark Theme */
 :root {
   /* Primary Brand Colors */
   --yb-navy: #2D3A4E;
@@ -11,9 +11,9 @@
   --yb-beige-light: #E8D5C4;
   --yb-white: #FFFFFF;
   
-  /* Semantic Colors */
-  --background: var(--yb-white);
-  --foreground: var(--yb-navy);
+  /* Dark Theme Colors */
+  --background: var(--yb-navy);
+  --foreground: var(--yb-beige);
   --accent: var(--yb-beige);
   --accent-foreground: var(--yb-navy);
   
@@ -41,15 +41,16 @@
 }
 
 .yb-card {
-  background: var(--yb-white);
+  background: var(--yb-beige);
+  color: var(--yb-navy);
   border-radius: 1.25rem;
-  box-shadow: 0 8px 20px -4px rgb(45 58 78 / 0.12), 0 4px 8px -2px rgb(45 58 78 / 0.08);
+  box-shadow: 0 8px 20px -4px rgb(0 0 0 / 0.25), 0 4px 8px -2px rgb(0 0 0 / 0.15);
   transition: all 0.3s ease;
 }
 
 .yb-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px -6px rgb(45 58 78 / 0.15), 0 6px 12px -3px rgb(45 58 78 / 0.1);
+  box-shadow: 0 12px 24px -6px rgb(0 0 0 / 0.3), 0 6px 12px -3px rgb(0 0 0 / 0.2);
 }
 
 .yb-btn-primary {
@@ -72,8 +73,8 @@
 
 .yb-btn-secondary {
   background: transparent;
-  color: var(--yb-navy);
-  border: 2px solid var(--yb-navy);
+  color: var(--yb-beige);
+  border: 2px solid var(--yb-beige);
   border-radius: 1.25rem;
   padding: 0.75rem 2rem;
   font-weight: 600;
@@ -84,8 +85,8 @@
 }
 
 .yb-btn-secondary:hover {
-  background: var(--yb-navy);
-  color: var(--yb-white);
+  background: var(--yb-beige);
+  color: var(--yb-navy);
 }
 
 /* Organic Curves */
@@ -149,4 +150,89 @@ body {
 
 .animate-slide-in {
   animation: slideIn 0.3s ease-out;
+}
+
+/* Decorative Shapes */
+.decorative-shape {
+  position: absolute;
+  background: rgba(217, 187, 164, 0.1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.decorative-circle {
+  border-radius: 50%;
+}
+
+.decorative-square {
+  border-radius: 12px;
+}
+
+.decorative-shape-sm {
+  width: 60px;
+  height: 60px;
+}
+
+.decorative-shape-md {
+  width: 120px;
+  height: 120px;
+}
+
+.decorative-shape-lg {
+  width: 200px;
+  height: 200px;
+}
+
+.decorative-shape-xl {
+  width: 300px;
+  height: 300px;
+}
+
+/* Decorative shape animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.3; }
+}
+
+.decorative-shape-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.decorative-shape-pulse {
+  animation: pulse 4s ease-in-out infinite;
+}
+
+/* Beige sections with navy text */
+.bg-beige {
+  background-color: var(--yb-beige) !important;
+  color: var(--yb-navy) !important;
+}
+
+.bg-beige h1, .bg-beige h2, .bg-beige h3, .bg-beige h4, .bg-beige h5, .bg-beige h6 {
+  color: var(--yb-navy) !important;
+}
+
+.bg-beige p, .bg-beige span, .bg-beige div {
+  color: var(--yb-navy) !important;
+}
+
+/* Dark theme specific styles */
+.dark-theme {
+  background: var(--yb-navy);
+  color: var(--yb-beige);
+}
+
+.dark-theme .decorative-shape {
+  background: rgba(217, 187, 164, 0.08);
+}
+
+/* Relative positioning for decorative shapes */
+.relative-decorative {
+  position: relative;
+  overflow: hidden;
 }

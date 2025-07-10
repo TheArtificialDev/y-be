@@ -22,8 +22,8 @@ export default function Button({
   
   const variantClasses = {
     primary: 'bg-yb-beige text-yb-navy hover:bg-yb-beige-dark hover:shadow-organic focus:ring-yb-beige',
-    secondary: 'bg-yb-navy text-yb-white hover:bg-yb-navy-dark hover:shadow-organic focus:ring-yb-navy',
-    outline: 'border-2 border-yb-navy text-yb-navy hover:bg-yb-navy hover:text-yb-white focus:ring-yb-navy',
+    secondary: 'bg-yb-navy text-yb-beige hover:bg-yb-navy-dark hover:shadow-organic focus:ring-yb-navy border border-yb-beige',
+    outline: 'border-2 border-yb-beige text-yb-beige hover:bg-yb-beige hover:text-yb-navy focus:ring-yb-beige',
   }
   
   const sizeClasses = {
