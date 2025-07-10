@@ -36,8 +36,10 @@ export default function Button({
   
   // Handle click tracking
   const handleClick = (e: React.MouseEvent) => {
-    // Track button clicks
-    trackEvent('click', 'Button', `${variant}-${children?.toString() || 'button'}`)
+    // Track button clicks with a small delay to ensure gtag is available
+    setTimeout(() => {
+      trackEvent('click', 'Button', `${variant}-${children?.toString() || 'button'}`)
+    }, 50)
     
     // Call original onClick if provided
     if (props.onClick) {
@@ -50,7 +52,11 @@ export default function Button({
       <Link 
         href={href} 
         className={classes}
-        onClick={() => trackEvent('click', 'Link', `${variant}-${href}`)}
+        onClick={() => {
+          setTimeout(() => {
+            trackEvent('click', 'Link', `${variant}-${href}`)
+          }, 50)
+        }}
       >
         {children}
       </Link>

@@ -13,7 +13,7 @@ export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'
 
 // Initialize Google Analytics
 export const initGA = () => {
-  if (typeof window !== 'undefined' && GA_TRACKING_ID) {
+  if (typeof window !== 'undefined' && GA_TRACKING_ID && window.gtag) {
     window.gtag('config', GA_TRACKING_ID, {
       page_title: document.title,
       page_location: window.location.href,
@@ -23,7 +23,7 @@ export const initGA = () => {
 
 // Track page views
 export const trackPageView = (url: string) => {
-  if (typeof window !== 'undefined' && GA_TRACKING_ID) {
+  if (typeof window !== 'undefined' && GA_TRACKING_ID && window.gtag) {
     window.gtag('config', GA_TRACKING_ID, {
       page_location: url,
     })
@@ -32,7 +32,7 @@ export const trackPageView = (url: string) => {
 
 // Track events
 export const trackEvent = (action: string, category: string, label?: string, value?: number) => {
-  if (typeof window !== 'undefined' && GA_TRACKING_ID) {
+  if (typeof window !== 'undefined' && GA_TRACKING_ID && window.gtag) {
     window.gtag('event', action, {
       event_category: category,
       event_label: label,
@@ -49,7 +49,10 @@ function GoogleAnalyticsInner() {
   useEffect(() => {
     if (pathname) {
       const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '')
-      trackPageView(url)
+      // Add a small delay to ensure gtag is loaded
+      setTimeout(() => {
+        trackPageView(url)
+      }, 100)
     }
   }, [pathname, searchParams])
 
