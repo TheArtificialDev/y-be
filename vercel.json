@@ -4,16 +4,6 @@
   "framework": "nextjs",
   "installCommand": "npm install",
   "devCommand": "npm run dev",
-  "env": {
-    "NEXT_PUBLIC_GA_ID": "@next_public_ga_id",
-    "NEXT_PUBLIC_SITE_URL": "@next_public_site_url"
-  },
-  "build": {
-    "env": {
-      "NEXT_PUBLIC_GA_ID": "@next_public_ga_id",
-      "NEXT_PUBLIC_SITE_URL": "@next_public_site_url"
-    }
-  },
   "functions": {
     "app/**/*.{js,jsx,ts,tsx}": {
       "maxDuration": 30

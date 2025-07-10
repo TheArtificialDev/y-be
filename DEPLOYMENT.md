@@ -45,10 +45,16 @@ vercel
 ### 3. Configure Environment Variables
 In your Vercel project dashboard, go to Settings → Environment Variables and add:
 
-```
-NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX (your Google Analytics 4 tracking ID)
-NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app
-```
+**Required Variables:**
+- **Key**: `NEXT_PUBLIC_GA_ID`
+  - **Value**: `G-XXXXXXXXXX` (your Google Analytics 4 tracking ID)
+  - **Environment**: Production, Preview, Development
+
+- **Key**: `NEXT_PUBLIC_SITE_URL`
+  - **Value**: `https://your-domain.vercel.app` (or your custom domain)
+  - **Environment**: Production, Preview, Development
+
+**Note**: You can leave `NEXT_PUBLIC_GA_ID` empty initially and add it later when you have your Google Analytics setup ready.
 
 ### 4. Custom Domain (Optional)
 1. Go to your Vercel project dashboard
@@ -105,6 +111,17 @@ The site includes built-in performance monitoring:
 - Error boundary reporting
 
 ## Troubleshooting
+
+### Environment Variable Errors
+**Error**: `Environment Variable "NEXT_PUBLIC_GA_ID" references Secret "next_public_ga_id", which does not exist.`
+
+**Solution**: 
+1. Go to your Vercel project dashboard
+2. Navigate to Settings → Environment Variables
+3. Add the variables directly (not as secrets):
+   - `NEXT_PUBLIC_GA_ID` = your Google Analytics tracking ID
+   - `NEXT_PUBLIC_SITE_URL` = your domain URL
+4. Redeploy your project
 
 ### Build Errors
 ```bash
