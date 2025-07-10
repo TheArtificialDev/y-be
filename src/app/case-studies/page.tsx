@@ -98,19 +98,19 @@ export default function CaseStudies() {
               See how businesses just like yours have gained sustainable competitive advantages through our strategic approach.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="text-center">
+              <div className="text-center square-box p-4">
                 <div className="text-3xl font-bold text-yb-beige mb-2">+187%</div>
                 <div className="text-sm text-yb-beige-light">Avg. Traffic Growth</div>
               </div>
-              <div className="text-center">
+              <div className="text-center square-box p-4">
                 <div className="text-3xl font-bold text-yb-beige mb-2">+219%</div>
                 <div className="text-sm text-yb-beige-light">Avg. Conversion Growth</div>
               </div>
-              <div className="text-center">
+              <div className="text-center square-box p-4">
                 <div className="text-3xl font-bold text-yb-beige mb-2">4.2x</div>
                 <div className="text-sm text-yb-beige-light">ROI Improvement</div>
               </div>
-              <div className="text-center">
+              <div className="text-center square-box p-4">
                 <div className="text-3xl font-bold text-yb-beige mb-2">15+</div>
                 <div className="text-sm text-yb-beige-light">Industries Served</div>
               </div>
@@ -122,7 +122,7 @@ export default function CaseStudies() {
       {/* Industry Expertise Showcase */}
       <Section background="white" padding="xl">
         <Container>
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 square-box-beige p-8">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
               Industry Expertise Showcase
             </h2>
@@ -199,7 +199,7 @@ export default function CaseStudies() {
       {/* Before/After Transformations */}
       <Section background="beige" padding="xl">
         <Container>
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 square-box-beige p-8">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
               Before/After Transformations
             </h2>
@@ -209,7 +209,7 @@ export default function CaseStudies() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-6 bg-white">
+            <Card className="p-6 bg-white square-box-beige">
               <h3 className="font-heading text-lg font-semibold text-yb-navy mb-4">Performance Metrics</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
@@ -236,7 +236,7 @@ export default function CaseStudies() {
               </div>
             </Card>
 
-            <Card className="p-6 bg-white">
+            <Card className="p-6 bg-white square-box-beige">
               <h3 className="font-heading text-lg font-semibold text-yb-navy mb-4">Search Rankings</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
@@ -263,7 +263,7 @@ export default function CaseStudies() {
               </div>
             </Card>
 
-            <Card className="p-6 bg-white">
+            <Card className="p-6 bg-white square-box-beige">
               <h3 className="font-heading text-lg font-semibold text-yb-navy mb-4">Business Impact</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
@@ -296,7 +296,7 @@ export default function CaseStudies() {
       {/* Client Testimonials */}
       <Section background="white" padding="xl">
         <Container>
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 square-box-beige p-8">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
               What Our Clients Say
             </h2>
@@ -306,7 +306,7 @@ export default function CaseStudies() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="p-8 bg-yb-beige bg-opacity-20">
+            <Card className="p-8 bg-yb-beige bg-opacity-20 square-box-beige">
               <div className="text-4xl text-yb-beige mb-4">&ldquo;</div>
               <p className="text-yb-navy mb-6 italic">
                 &ldquo;The competitive analysis was eye-opening. We had no idea how much we were falling behind until Y-Be showed us exactly where our competitors were winning. The strategic roadmap they provided became our blueprint for dominating our market.&rdquo;
@@ -322,7 +322,7 @@ export default function CaseStudies() {
               </div>
             </Card>
 
-            <Card className="p-8 bg-yb-beige bg-opacity-20">
+            <Card className="p-8 bg-yb-beige bg-opacity-20 square-box-beige">
               <div className="text-4xl text-yb-beige mb-4">&ldquo;</div>
               <p className="text-yb-navy mb-6 italic">
                 &ldquo;Y-Be didn&apos;t just build us a website - they engineered our competitive advantage. Our ROI from their work exceeded our expectations by 340%. We&apos;re now the go-to choice in our industry.&rdquo;

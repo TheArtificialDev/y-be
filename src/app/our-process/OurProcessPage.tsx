@@ -3,7 +3,21 @@
 import { useState } from 'react'
 import Section from '@/components/Section'
 import Container from '@/components/Container'
-import Card from '@/components/Card'
+imp        <Container>
+          <div className="text-center mb-16 square-box-beige p-8">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
+              Strategic Planning
+            </h2>
+            <p className="text-lg text-yb-navy-light max-w-2xl mx-auto">
+              Raw data becomes strategic advantage through our proven planning methodology.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <Card className="p-8 square-box">
+              <h3 className="font-heading text-xl font-semibold text-yb-navy mb-6">
+                Competitive Strategy Map
+              </h3>@/components/Card'
 import Button from '@/components/Button'
 
 export default function OurProcess() {
@@ -88,7 +102,7 @@ export default function OurProcess() {
       {/* Process Overview */}
       <Section background="white" padding="xl">
         <Container>
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 square-box-beige p-8">
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
               Research & Analysis Deep Dive
             </h2>

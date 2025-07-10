@@ -3,9 +3,9 @@ import { Geist, Geist_Mono, Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import GoogleAnalytics, { GA_TRACKING_ID } from "@/lib/analytics";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
-import Script from "next/script";
+import { RandomDecorativeShapes } from "@/components/DecorativeShapes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -76,36 +76,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        {GA_TRACKING_ID && (
-          <>
-            <Script
-              strategy="afterInteractive"
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-            />
-            <Script
-              id="google-analytics"
-              strategy="afterInteractive"
-            >
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_TRACKING_ID}');
-              `}
-            </Script>
-          </>
-        )}
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${inter.variable} antialiased dark-theme bg-yb-navy text-yb-beige`}
       >
+        <RandomDecorativeShapes />
         <Navigation />
         <main className="min-h-screen">
           {children}
         </main>
         <Footer />
-        <GoogleAnalytics />
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
         <PerformanceMonitor />
       </body>
     </html>

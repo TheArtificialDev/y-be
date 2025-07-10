@@ -195,16 +195,18 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 0.1; }
-  50% { opacity: 0.3; }
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.2; }
 }
 
 .decorative-shape-float {
   animation: float 6s ease-in-out infinite;
+  will-change: transform;
 }
 
 .decorative-shape-pulse {
   animation: pulse 4s ease-in-out infinite;
+  will-change: opacity;
 }
 
 /* Beige sections with navy text */
@@ -235,4 +237,94 @@ body {
 .relative-decorative {
   position: relative;
   overflow: hidden;
+}
+
+/* Random decorative shapes across the site */
+.random-decorative-shapes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.random-decorative-shapes .decorative-shape {
+  position: absolute;
+  background: rgba(217, 187, 164, 0.06);
+  border: 1px solid rgba(217, 187, 164, 0.08);
+  backdrop-filter: blur(1px);
+  transition: all 0.3s ease;
+}
+
+/* Responsive adjustments for random shapes */
+@media (max-width: 768px) {
+  .random-decorative-shapes .decorative-shape-xl {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .random-decorative-shapes .decorative-shape-lg {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .random-decorative-shapes .decorative-shape-xl {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .random-decorative-shapes .decorative-shape-lg {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .random-decorative-shapes .decorative-shape-md {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Square boxes for non-home pages */
+.square-box {
+  border: 2px solid rgba(217, 187, 164, 0.3);
+  border-radius: 0;
+  background: rgba(217, 187, 164, 0.05);
+  transition: all 0.3s ease;
+}
+
+.square-box:hover {
+  border-color: rgba(217, 187, 164, 0.5);
+  background: rgba(217, 187, 164, 0.1);
+  box-shadow: 0 4px 16px rgba(217, 187, 164, 0.2);
+}
+
+.square-box-navy {
+  border: 2px solid rgba(45, 58, 78, 0.3);
+  border-radius: 0;
+  background: rgba(45, 58, 78, 0.05);
+  transition: all 0.3s ease;
+}
+
+.square-box-navy:hover {
+  border-color: rgba(45, 58, 78, 0.5);
+  background: rgba(45, 58, 78, 0.1);
+  box-shadow: 0 4px 16px rgba(45, 58, 78, 0.2);
+}
+
+.square-box-beige {
+  border: 2px solid rgba(217, 187, 164, 0.3);
+  border-radius: 0;
+  background: var(--yb-beige);
+  transition: all 0.3s ease;
+}
+
+.square-box-beige:hover {
+  border-color: rgba(217, 187, 164, 0.5);
+  background: var(--yb-beige-light);
+  box-shadow: 0 4px 16px rgba(217, 187, 164, 0.2);
 }

@@ -99,7 +99,7 @@ export default function GettingStarted() {
       <Section background="white" padding="xl">
         <Container>
           <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="text-center mb-12 square-box-beige p-8">
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
                 Strategic Intake Form
               </h2>
@@ -110,7 +110,7 @@ export default function GettingStarted() {
 
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Business Information */}
-              <Card className="p-8">
+              <Card className="p-8 square-box">
                 <h3 className="font-heading text-xl font-semibold text-yb-navy mb-6">
                   Business Information
                 </h3>
@@ -144,7 +144,7 @@ export default function GettingStarted() {
               </Card>
 
               {/* Competitor Analysis */}
-              <Card className="p-8">
+              <Card className="p-8 square-box">
                 <h3 className="font-heading text-xl font-semibold text-yb-navy mb-6">
                   Competitor Intelligence
                 </h3>
@@ -193,7 +193,7 @@ export default function GettingStarted() {
               </Card>
 
               {/* Challenges & Goals */}
-              <Card className="p-8">
+              <Card className="p-8 square-box">
                 <h3 className="font-heading text-xl font-semibold text-yb-navy mb-6">
                   Current Challenges
                 </h3>
@@ -236,7 +236,7 @@ export default function GettingStarted() {
               </Card>
 
               {/* Budget & Contact */}
-              <Card className="p-8">
+              <Card className="p-8 square-box">
                 <h3 className="font-heading text-xl font-semibold text-yb-navy mb-6">
                   Project Details
                 </h3>
@@ -301,7 +301,7 @@ export default function GettingStarted() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-8 bg-white relative">
+            <Card className="p-8 bg-white relative square-box-beige">
               <div className="text-center">
                 <h3 className="font-heading text-xl font-bold text-yb-navy mb-2">Starter</h3>
                 <div className="text-3xl font-bold text-yb-navy mb-4">$5,000 - $15,000</div>
@@ -331,7 +331,7 @@ export default function GettingStarted() {
               </div>
             </Card>
 
-            <Card className="p-8 bg-white relative border-2 border-yb-beige">
+            <Card className="p-8 bg-white relative border-2 border-yb-beige square-box-beige">
               <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                 <span className="bg-yb-beige text-yb-navy px-4 py-2 rounded-full text-sm font-medium">
                   Most Popular
@@ -366,7 +366,7 @@ export default function GettingStarted() {
               </div>
             </Card>
 
-            <Card className="p-8 bg-white relative">
+            <Card className="p-8 bg-white relative square-box-beige">
               <div className="text-center">
                 <h3 className="font-heading text-xl font-bold text-yb-navy mb-2">Enterprise</h3>
                 <div className="text-3xl font-bold text-yb-navy mb-4">$35,000+</div>
@@ -413,7 +413,7 @@ export default function GettingStarted() {
 
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-center square-box-beige">
                 <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-yb-navy font-bold">1</span>
                 </div>
@@ -426,7 +426,7 @@ export default function GettingStarted() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-center square-box-beige">
                 <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-yb-navy font-bold">2</span>
                 </div>
@@ -439,7 +439,7 @@ export default function GettingStarted() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-center square-box-beige">
                 <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-yb-navy font-bold">3</span>
                 </div>
@@ -452,7 +452,7 @@ export default function GettingStarted() {
                 </p>
               </Card>
 
-              <Card className="p-6 text-center">
+              <Card className="p-6 text-center square-box-beige">
                 <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-yb-navy font-bold">4</span>
                 </div>
