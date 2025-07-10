@@ -7,14 +7,6 @@ const nextConfig = {
   // Enable experimental features for better performance
   experimental: {
     optimizePackageImports: ['@/components', '@/lib'],
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
   },
   
   // Optimize images

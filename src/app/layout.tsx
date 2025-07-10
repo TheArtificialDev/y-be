@@ -38,10 +38,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Y-Be Team" }],
   creator: "Y-Be",
   publisher: "Y-Be",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://ybe.studio'),
   openGraph: {
     title: "Y-Be | Engineering Competitive Advantages",
     description: "We don&apos;t just build websites, we engineer competitive advantages through data-driven web solutions.",
-    url: "https://ybe.studio",
+    url: "/",
     siteName: "Y-Be",
     locale: "en_US",
     type: "website",
