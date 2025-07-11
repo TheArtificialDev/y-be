@@ -553,3 +553,219 @@ div:not([class*="bg-"]) {
   background: var(--yb-navy-darker);
   box-shadow: 0 4px 16px rgba(217, 187, 164, 0.2);
 }
+
+/* Premium Hero Animation Styles */
+.hero-word-drop {
+  animation: wordDrop 0.7s ease-out forwards;
+}
+
+@keyframes wordDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-48px) rotateX(90deg);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-8px) rotateX(45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+.hero-fade-in {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-slide-right {
+  animation: slideInRight 1s ease-out forwards;
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hero-rise-up {
+  animation: riseUp 1s ease-out forwards;
+}
+
+@keyframes riseUp {
+  0% {
+    opacity: 0;
+    transform: translateY(32px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Enhanced transitions with easing curves */
+.premium-transition {
+  transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.premium-transition-slow {
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Scroll-triggered animations */
+.scroll-fade-up {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-slide-left {
+  opacity: 0;
+  transform: translateX(-4rem);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-slide-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-slide-right {
+  opacity: 0;
+  transform: translateX(4rem);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-slide-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Add subtle hover effects for cards */
+.premium-card {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateY(0);
+}
+
+.premium-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Add premium shadow effects for depth */
+.hero-premium-shadow {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+}
+
+/* Materialization effect for cards */
+.card-materialize {
+  opacity: 0;
+  transform: translateY(4rem) scale(0.9);
+  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.card-materialize.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Border fade effect */
+.border-fade {
+  opacity: 0;
+  transform: scale(0.95);
+  filter: blur(1px);
+  transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.border-fade.visible {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0px);
+}
+
+/* Drop from top effect */
+.drop-from-top {
+  opacity: 0;
+  transform: translateY(-3rem);
+  transition: all 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.drop-from-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enhanced card glow on hover */
+.data-card:hover {
+  box-shadow: 0 16px 32px rgba(217, 187, 164, 0.3);
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Bidirectional animation styles */
+.bidirectional-fade {
+  transition: all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.bidirectional-title-drop {
+  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bidirectional-card-materialize {
+  transition: all 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bidirectional-slide-left {
+  transition: all 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.bidirectional-slide-right {
+  transition: all 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Enhanced reverse animations for smooth exit */
+.reverse-fade-out {
+  opacity: 0;
+  transform: scale(0.95);
+  filter: blur(2px);
+}
+
+.reverse-drop-up {
+  opacity: 0;
+  transform: translateY(-24px);
+}
+
+.reverse-materialize-down {
+  opacity: 0;
+  transform: translateY(80px) scale(0.8);
+}
+
+.reverse-slide-left-out {
+  opacity: 0;
+  transform: translateX(-80px) scale(0.95);
+}
+
+.reverse-slide-right-out {
+  opacity: 0;
+  transform: translateX(80px) scale(0.95);
+}

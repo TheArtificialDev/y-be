@@ -2,11 +2,25 @@ import { NextRequest, NextResponse } from 'next/server'
 import { MongoClient } from 'mongodb'
 
 // MongoDB connection
-const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017'
-const client = new MongoClient(uri)
+const uri = process.env.MONGODB_URI
+
+if (!uri) {
+  console.error('❌ MONGODB_URI environment variable is not set')
+}
+
+const client = uri ? new MongoClient(uri) : null
 
 export async function POST(request: NextRequest) {
   try {
+    // Check if MongoDB is configured
+    if (!client || !uri) {
+      console.error('❌ MongoDB not properly configured')
+      return NextResponse.json(
+        { error: 'Database connection not configured' },
+        { status: 500 }
+      )
+    }
+
     // Parse the request body
     const formData = await request.json()
     
@@ -55,10 +69,12 @@ export async function POST(request: NextRequest) {
     console.error('Error submitting form:', error)
     
     // Make sure to close the connection on error
-    try {
-      await client.close()
-    } catch (closeError) {
-      console.error('Error closing MongoDB connection:', closeError)
+    if (client) {
+      try {
+        await client.close()
+      } catch (closeError) {
+        console.error('Error closing MongoDB connection:', closeError)
+      }
     }
 
     return NextResponse.json(
