@@ -2,18 +2,6 @@
 
 import { ReactNode, useEffect, useState } from 'react'
 
-interface FloatingShape {
-  id: string
-  shape: 'circle' | 'rounded-square' | 'triangle'
-  size: number // px
-  x: number // percentage
-  y: number // percentage
-  opacity: number
-  animationDuration: number // seconds
-  animationDelay: number // seconds
-  direction: 'clockwise' | 'counterclockwise' | 'diagonal' | 'wave' | 'spiral'
-}
-
 // Create a truly fixed background with floating shapes
 export function FloatingBackground() {
   const [isClient, setIsClient] = useState(false)

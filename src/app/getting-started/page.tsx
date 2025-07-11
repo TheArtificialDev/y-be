@@ -323,7 +323,7 @@ export default function GettingStarted() {
                     <div className="text-green-400 text-6xl mb-4">✓</div>
                     <h3 className="text-2xl font-bold text-yb-beige mb-4">Success! Your Analysis is On the Way</h3>
                     <p className="text-yb-beige-light mb-4">
-                      We've received your information and will send your competitive analysis within 48 hours.
+                      We&apos;ve received your information and will send your competitive analysis within 48 hours.
                     </p>
                   </div>
                 ) : (
