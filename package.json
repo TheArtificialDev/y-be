@@ -1,13 +1,17 @@
 {
-  "name": "homepage",
-  "version": "0.1.0",
+  "name": "ybe-homepage",
+  "version": "1.0.0",
+  "description": "Y-Be Agency Homepage - Engineering Competitive Advantages",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "analyze": "ANALYZE=true npm run build"
+    "analyze": "ANALYZE=true npm run build",
+    "type-check": "tsc --noEmit",
+    "test:accessibility": "./test-accessibility.sh",
+    "test:performance": "./test-performance.sh"
   },
   "dependencies": {
     "@next/third-parties": "^15.3.5",

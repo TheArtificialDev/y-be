@@ -5,7 +5,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import PerformanceMonitor from "@/components/PerformanceMonitor";
-import { RandomDecorativeShapes } from "@/components/DecorativeShapes";
+import { FloatingBackground } from "@/components/DecorativeShapes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -84,12 +84,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${inter.variable} antialiased dark-theme text-yb-beige`}
       >
-        <RandomDecorativeShapes />
-        <Navigation />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        <FloatingBackground />
+        <div className="relative z-10">
+          <Navigation />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
+        </div>
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}

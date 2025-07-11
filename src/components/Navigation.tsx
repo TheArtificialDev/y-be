@@ -16,7 +16,7 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
-    <nav className="bg-yb-navy-dark sticky top-0 z-50 border-b border-yb-beige" style={{ backgroundColor: '#0F1419', opacity: 1 }}>
+    <nav className="navigation-fixed">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -87,7 +87,7 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-yb-navy-dark border-t border-yb-beige">
+        <div className="md:hidden border-t border-yb-beige" style={{ backgroundColor: '#0F1419' }}>
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <Link

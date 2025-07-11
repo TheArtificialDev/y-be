@@ -1,53 +1,84 @@
-# YBE Homepage
+# Y-Be Homepage Documentation
 
-A modern Next.js website for Your Business Engine (YBE) with four main pages showcasing business solutions and services.
+## Project Overview
+This is the official homepage for Y-Be, a data-driven web development agency that engineers competitive advantages through strategic web solutions.
 
-## Project Structure
+## Architecture
+- **Framework**: Next.js 14 with App Router
+- **Styling**: Tailwind CSS with custom Y-Be design system
+- **Performance**: Optimized for Core Web Vitals
+- **SEO**: Comprehensive SEO optimization with structured data
 
-This project includes the following pages:
-- **Home** (`/`) - Landing page with hero section and feature highlights
-- **Our Process** (`/our-process`) - Detailed overview of the company's methodology
-- **Case Studies** (`/case-studies`) - Success stories and client testimonials
-- **Getting Started** (`/getting-started`) - Contact form and onboarding information
+## Design System
+### Colors
+- Primary Navy: `#0F1419` (yb-navy-dark)
+- Navy: `#1A2332` (yb-navy)
+- Light Navy: `#2D3A4E` (yb-navy-light)
+- Beige: `#D9BBA4` (yb-beige)
+- Beige Light: `#E8D5C4` (yb-beige-light)
+- Beige Dark: `#C4A485` (yb-beige-dark)
 
-## Features
+### Typography
+- **Headings**: Playfair Display (serif)
+- **Body**: Inter (sans-serif)
+- **Fallbacks**: Geist Sans, Geist Mono
 
-- **Next.js 15** with App Router
-- **TypeScript** for type safety
-- **Tailwind CSS** for styling
-- **Responsive design** for all device sizes
-- **Modern UI/UX** with clean, professional design
-- **Navigation component** with active page highlighting
+### Components
+- **Buttons**: Primary, Secondary, Outline variants
+- **Cards**: Multiple variants with hover effects
+- **Navigation**: Responsive with mobile menu
+- **Sections**: Consistent spacing and backgrounds
 
-## Getting Started
+## Pages Structure
+- **Home** (`/`): Main landing page with hero, features, and CTA
+- **Our Process** (`/our-process`): Detailed process explanation
+- **Case Studies** (`/case-studies`): Client success stories
+- **Getting Started** (`/getting-started`): Lead generation form
 
-First, install the dependencies:
+## Performance Features
+- Image optimization with Next.js Image component
+- Bundle analysis with @next/bundle-analyzer
+- Performance monitoring component
+- Lazy loading for optimal loading times
 
+## SEO Features
+- Dynamic metadata generation
+- Structured data (JSON-LD)
+- Sitemap generation
+- Robots.txt configuration
+- Open Graph and Twitter Card optimization
+
+## Development
 ```bash
+# Install dependencies
 npm install
-```
 
-Then, run the development server:
-
-```bash
+# Run development server
 npm run dev
+
+# Build for production
+npm run build
+
+# Run production build
+npm start
+
+# Analyze bundle
+npm run analyze
 ```
 
-Open [http://localhost:3000](http://localhost:3000) (or the port shown in terminal) with your browser to see the result.
+## Deployment
+The site is optimized for Vercel deployment with automatic builds and performance monitoring.
 
-## Technology Stack
-
-- **Framework**: Next.js 15
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Deployment**: Ready for Vercel deployment
-
-## Project Structure
-
-```
-src/
-├── app/
-│   ├── layout.tsx          # Root layout with navigation
+## Key Features Implemented
+✅ Responsive design with mobile-first approach
+✅ Square box styling for non-home pages
+✅ Deep blue navbar with no transparency
+✅ Logo integration with optimized Image component
+✅ Favicon and app icons
+✅ Performance optimization
+✅ SEO optimization
+✅ Analytics integration
+✅ Accessibility compliance
 │   ├── page.tsx            # Home page
 │   ├── our-process/
 │   │   └── page.tsx        # Our Process page
