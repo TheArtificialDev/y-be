@@ -30,10 +30,10 @@ export default function HomePage() {
                   Your Business Engine - Powering innovation and growth through data-driven web solutions that position you ahead of the competition.
                 </p>
                 <div className={`flex flex-col sm:flex-row gap-4 justify-center lg:justify-start transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                  <Button href="/getting-started" variant="outline" size="lg">
+                  <Button href="/getting-started" variant="outline" size="lg" className="!rounded-none">
                     See How We Analyze Your Competition
                   </Button>
-                  <Button href="/our-process" variant="outline" size="lg">
+                  <Button href="/our-process" variant="outline" size="lg" className="!rounded-none">
                     Learn More →
                   </Button>
                 </div>
@@ -57,7 +57,7 @@ export default function HomePage() {
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <Card className="p-8 bg-yb-navy/10 hover:bg-yb-navy/20 transition-all duration-300 border border-yb-navy/20">
+              <Card className="p-8 bg-yb-navy/10 hover:bg-yb-navy/20 transition-all duration-300 border border-yb-navy/20 !rounded-none">
                 <h3 className="font-heading text-2xl font-bold text-yb-navy/70 mb-6">Generic Solutions</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start space-x-3">
@@ -79,7 +79,7 @@ export default function HomePage() {
                 </ul>
               </Card>
               
-              <Card className="p-8 bg-yb-navy text-yb-beige hover:bg-yb-navy-dark transition-all duration-300 border border-yb-navy">
+              <Card className="p-8 bg-yb-navy text-yb-beige hover:bg-yb-navy-dark transition-all duration-300 border border-yb-navy !rounded-none">
                 <h3 className="font-heading text-2xl font-bold text-yb-beige mb-6">Y-Be Solutions</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start space-x-3">
@@ -109,7 +109,7 @@ export default function HomePage() {
       <Section background="navy" padding="xl">
         <DecorativeWrapper>
           <Container>
-            <div className="bg-yb-beige/5 border border-yb-beige/20 rounded-2xl p-8 mb-8">
+            <div className="bg-yb-beige/5 border border-yb-beige/20 !rounded-none p-8 mb-8">
               <div className="text-center mb-16">
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-beige mb-4">
                   Data-Driven Differentiation
@@ -120,9 +120,9 @@ export default function HomePage() {
               </div>
               
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <Card className="p-6 bg-yb-beige text-yb-navy hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300 border border-yb-beige/30">
+                <Card className="p-6 bg-yb-beige text-yb-navy hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300 border border-yb-beige/30 !rounded-none">
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-yb-navy rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-yb-navy !rounded-none flex items-center justify-center mx-auto mb-4">
                       <span className="text-yb-beige font-bold text-2xl">📊</span>
                     </div>
                     <h3 className="font-heading text-xl font-semibold text-yb-navy mb-4">
@@ -131,7 +131,7 @@ export default function HomePage() {
                     <p className="text-yb-navy/80 mb-4">
                       We analyze your top 10 competitors&apos; websites, SEO strategies, and user experiences
                 </p>
-                <div className="bg-yb-navy/20 rounded-lg p-4">
+                <div className="bg-yb-navy/20 !rounded-none p-4">
                   <div className="text-sm text-yb-navy font-medium">Sample Insights:</div>
                   <div className="text-xs text-yb-navy/80 mt-2">
                     • Competitor A: 45% faster load times needed<br/>
@@ -142,9 +142,9 @@ export default function HomePage() {
               </div>
             </Card>
             
-            <Card className="p-6 bg-yb-beige text-yb-navy hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300 border border-yb-beige/30">
+            <Card className="p-6 bg-yb-beige text-yb-navy hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300 border border-yb-beige/30 !rounded-none">
               <div className="text-center">
-                <div className="w-16 h-16 bg-yb-navy rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-yb-navy !rounded-none flex items-center justify-center mx-auto mb-4">
                   <span className="text-yb-beige font-bold text-2xl">🎯</span>
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-yb-navy mb-4">
@@ -153,19 +153,19 @@ export default function HomePage() {
                 <p className="text-yb-navy/80 mb-4">
                   Identify keyword opportunities and technical SEO advantages
                 </p>
-                <div className="bg-yb-navy/20 rounded-lg p-4">
+                <div className="bg-yb-navy/20 !rounded-none p-4">
                   <div className="text-sm text-yb-navy font-medium">Opportunity Score:</div>
                   <div className="flex items-center mt-2">
-                    <div className="bg-green-500 h-2 rounded-full w-4/5"></div>
+                    <div className="bg-green-500 h-2 !rounded-none w-4/5"></div>
                     <span className="ml-2 text-sm text-yb-navy">84%</span>
                   </div>
                 </div>
               </div>
             </Card>
             
-            <Card className="p-6 bg-yb-beige text-yb-navy hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300 border border-yb-beige/30">
+            <Card className="p-6 bg-yb-beige text-yb-navy hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300 border border-yb-beige/30 !rounded-none">
               <div className="text-center">
-                <div className="w-16 h-16 bg-yb-navy rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-yb-navy !rounded-none flex items-center justify-center mx-auto mb-4">
                   <span className="text-yb-beige font-bold text-2xl">🚀</span>
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-yb-navy mb-4">
@@ -174,7 +174,7 @@ export default function HomePage() {
                 <p className="text-yb-navy/80 mb-4">
                   Track and optimize every aspect of your competitive position
                 </p>
-                <div className="bg-yb-navy/20 rounded-lg p-4">
+                <div className="bg-yb-navy/20 !rounded-none p-4">
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     <div>
                       <div className="text-yb-navy font-medium">Speed</div>
@@ -198,7 +198,7 @@ export default function HomePage() {
       <Section background="beige" padding="xl">
         <DecorativeWrapper>
           <Container>
-            <div className="bg-yb-navy/5 border border-yb-navy/20 rounded-2xl p-8 mb-8">
+            <div className="bg-yb-navy/5 border border-yb-navy/20 !rounded-none p-8 mb-8">
               <div className="text-center mb-16">
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
                   360° Service Spectrum
@@ -209,9 +209,9 @@ export default function HomePage() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <Card className="p-6 bg-yb-navy text-yb-beige group hover:bg-yb-navy-dark hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300 cursor-pointer border border-yb-navy/30">
+                <Card className="p-6 bg-yb-navy text-yb-beige group hover:bg-yb-navy-dark hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300 cursor-pointer border border-yb-navy/30 !rounded-none">
               <div className="text-center">
-                <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-yb-beige-light transition-all duration-300">
+                <div className="w-16 h-16 bg-yb-beige !rounded-none flex items-center justify-center mx-auto mb-4 group-hover:bg-yb-beige-light transition-all duration-300">
                   <span className="text-yb-navy font-bold text-2xl">🎨</span>
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-yb-beige mb-4">
@@ -221,16 +221,16 @@ export default function HomePage() {
                   Custom designs that reflect your competitive positioning
                 </p>
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="text-xs text-yb-navy bg-yb-beige rounded p-2">
+                  <div className="text-xs text-yb-navy bg-yb-beige !rounded-none p-2">
                     Integration benefits: Brand consistency, faster loading, better conversions
                   </div>
                 </div>
               </div>
             </Card>
             
-            <Card className="p-6 bg-yb-navy text-yb-beige group hover:bg-yb-navy-dark hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300 cursor-pointer border border-yb-navy/30">
+            <Card className="p-6 bg-yb-navy text-yb-beige group hover:bg-yb-navy-dark hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300 cursor-pointer border border-yb-navy/30 !rounded-none">
               <div className="text-center">
-                <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-yb-beige-light transition-all duration-300">
+                <div className="w-16 h-16 bg-yb-beige !rounded-none flex items-center justify-center mx-auto mb-4 group-hover:bg-yb-beige-light transition-all duration-300">
                   <span className="text-yb-navy font-bold text-2xl">🏷️</span>
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-yb-beige mb-4">
@@ -240,16 +240,16 @@ export default function HomePage() {
                   Brand identity that sets you apart from competitors
                 </p>
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="text-xs text-yb-navy bg-yb-beige rounded p-2">
+                  <div className="text-xs text-yb-navy bg-yb-beige !rounded-none p-2">
                     Integration benefits: Cohesive messaging, stronger differentiation
                   </div>
                 </div>
               </div>
             </Card>
             
-            <Card className="p-6 bg-yb-navy text-yb-beige group hover:bg-yb-navy-dark hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300 cursor-pointer border border-yb-navy/30">
+            <Card className="p-6 bg-yb-navy text-yb-beige group hover:bg-yb-navy-dark hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300 cursor-pointer border border-yb-navy/30 !rounded-none">
               <div className="text-center">
-                <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-yb-beige-light transition-all duration-300">
+                <div className="w-16 h-16 bg-yb-beige !rounded-none flex items-center justify-center mx-auto mb-4 group-hover:bg-yb-beige-light transition-all duration-300">
                   <span className="text-yb-navy font-bold text-2xl">⚡</span>
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-yb-beige mb-4">
@@ -259,16 +259,16 @@ export default function HomePage() {
                   Technical excellence that outperforms competitors
                 </p>
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="text-xs text-yb-navy bg-yb-beige rounded p-2">
+                  <div className="text-xs text-yb-navy bg-yb-beige !rounded-none p-2">
                     Integration benefits: Superior performance, better SEO rankings
                   </div>
                 </div>
               </div>
             </Card>
             
-            <Card className="p-6 bg-yb-navy text-yb-beige group hover:bg-yb-navy-dark hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300 cursor-pointer border border-yb-navy/30">
+            <Card className="p-6 bg-yb-navy text-yb-beige group hover:bg-yb-navy-dark hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300 cursor-pointer border border-yb-navy/30 !rounded-none">
               <div className="text-center">
-                <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-yb-beige-light transition-all duration-300">
+                <div className="w-16 h-16 bg-yb-beige !rounded-none flex items-center justify-center mx-auto mb-4 group-hover:bg-yb-beige-light transition-all duration-300">
                   <span className="text-yb-navy font-bold text-2xl">🔧</span>
                 </div>
                 <h3 className="font-heading text-xl font-semibold text-yb-beige mb-4">
@@ -278,7 +278,7 @@ export default function HomePage() {
                   Lightning-fast infrastructure for competitive advantage
                 </p>
                 <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="text-xs text-yb-navy bg-yb-beige rounded p-2">
+                  <div className="text-xs text-yb-navy bg-yb-beige !rounded-none p-2">
                     Integration benefits: 99.9% uptime, faster speeds than competitors
                   </div>
                 </div>
@@ -294,7 +294,7 @@ export default function HomePage() {
       <Section background="beige" padding="xl">
         <DecorativeWrapper>
           <Container>
-            <div className="bg-yb-navy/5 border border-yb-navy/20 rounded-2xl p-8 mb-8 hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300">
+            <div className="bg-yb-navy/5 border border-yb-navy/20 !rounded-none p-8 mb-8 hover:shadow-lg hover:shadow-yb-beige/20 transition-all duration-300">
               <div className="text-center mb-12">
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
                   Results That Speak for Themselves
@@ -305,24 +305,24 @@ export default function HomePage() {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <Card className="p-6 text-center bg-yb-beige hover:bg-yb-beige-light transition-all duration-300">
+                <Card className="p-6 text-center bg-yb-beige hover:bg-yb-beige-light transition-all duration-300 !rounded-none">
                   <div className="text-5xl font-bold text-yb-navy mb-2">+148%</div>
                   <p className="text-yb-navy-light text-sm mb-2">Traffic increase in 3 months</p>
                   <p className="text-xs text-yb-navy-light">&ldquo;E-commerce retailer&rdquo;</p>
                 </Card>
-                <Card className="p-6 text-center bg-yb-beige hover:bg-yb-beige-light transition-all duration-300">
+                <Card className="p-6 text-center bg-yb-beige hover:bg-yb-beige-light transition-all duration-300 !rounded-none">
                   <div className="text-5xl font-bold text-yb-navy mb-2">2.3x</div>
                   <p className="text-yb-navy-light text-sm mb-2">Conversion rate improvement</p>
                   <p className="text-xs text-yb-navy-light">&ldquo;SaaS company&rdquo;</p>
                 </Card>
-                <Card className="p-6 text-center bg-yb-beige hover:bg-yb-beige-light transition-all duration-300">
+                <Card className="p-6 text-center bg-yb-beige hover:bg-yb-beige-light transition-all duration-300 !rounded-none">
                   <div className="text-5xl font-bold text-yb-navy mb-2">67%</div>
                   <p className="text-yb-navy-light text-sm mb-2">Faster load times vs competitors</p>
                   <p className="text-xs text-yb-navy-light">&ldquo;Professional services&rdquo;</p>
                 </Card>
               </div>
               
-              <div className="bg-yb-beige rounded-lg p-8 max-w-4xl mx-auto">
+              <div className="bg-yb-beige !rounded-none p-8 max-w-4xl mx-auto">
                 <div className="text-center mb-6">
                   <div className="text-6xl text-yb-beige mb-4">&ldquo;</div>
                   <p className="text-lg text-yb-navy italic mb-4">
@@ -352,10 +352,10 @@ export default function HomePage() {
               No generic solutions - just strategic advantages tailored to your market.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button href="/getting-started" variant="primary" size="lg">
+              <Button href="/getting-started" variant="primary" size="lg" className="!rounded-none">
                 Claim Your Free Competitive Analysis
               </Button>
-              <Button href="/our-process" variant="outline" size="lg" className="border-yb-beige text-yb-beige hover:bg-yb-beige hover:text-yb-navy">
+              <Button href="/our-process" variant="outline" size="lg" className="border-yb-beige text-yb-beige hover:bg-yb-beige hover:text-yb-navy !rounded-none">
                 See Our Process →
               </Button>
             </div>
