@@ -37,31 +37,6 @@ const useBidirectionalIntersectionObserver = (threshold = 0.1, rootMargin = '0px
   return [ref, isIntersecting] as const
 }
 
-// Regular intersection observer for hero section (no fade out)
-const useIntersectionObserver = (threshold = 0.1, rootMargin = '0px') => {
-  const [isIntersecting, setIsIntersecting] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsIntersecting(true)
-        }
-      },
-      { threshold, rootMargin }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [threshold, rootMargin])
-
-  return [ref, isIntersecting] as const
-}
-
 export default function HomePage() {
   const [animationState, setAnimationState] = useState({
     word0: false,
