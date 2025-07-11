@@ -1,13 +1,78 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Section from '@/components/Section'
 import Container from '@/components/Container'
 import Card from '@/components/Card'
 import Button from '@/components/Button'
 
+// Custom hook for bi-directional intersection observer
+const useBidirectionalIntersectionObserver = (threshold = 0.1, rootMargin = '0px') => {
+  const [isIntersecting, setIsIntersecting] = useState(false)
+  const [hasAnimated, setHasAnimated] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsIntersecting(true)
+          setHasAnimated(true)
+        } else if (hasAnimated) {
+          // Only fade out if it has been animated in before
+          setIsIntersecting(false)
+        }
+      },
+      { threshold, rootMargin }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [threshold, rootMargin, hasAnimated])
+
+  return [ref, isIntersecting] as const
+}
+
 export default function OurProcess() {
   const [expandedStep, setExpandedStep] = useState<number | null>(null)
+  
+  // Hero animation state (one-time animation)
+  const [heroAnimationState, setHeroAnimationState] = useState({
+    title: false,
+    subtitle: false,
+    button: false
+  })
+
+  // Section observers
+  const [overviewTitleRef, isOverviewTitleVisible] = useBidirectionalIntersectionObserver(0.8, '-20px')
+  const [processTimelineRef, isProcessTimelineVisible] = useBidirectionalIntersectionObserver(0.3, '-20px')
+  const [strategicPlanningRef, isStrategicPlanningVisible] = useBidirectionalIntersectionObserver(0.3, '-20px')
+  const [creativeDevelopmentRef, isCreativeDevelopmentVisible] = useBidirectionalIntersectionObserver(0.3, '-20px')
+  const [technicalExcellenceRef, isTechnicalExcellenceVisible] = useBidirectionalIntersectionObserver(0.3, '-20px')
+  const [continuousOptimizationRef, isContinuousOptimizationVisible] = useBidirectionalIntersectionObserver(0.3, '-20px')
+  const [finalCtaRef, isFinalCtaVisible] = useBidirectionalIntersectionObserver(0.3, '-20px')
+
+  // Hero animation sequence (one-time)
+  useEffect(() => {
+    const sequence = async () => {
+      setTimeout(() => {
+        setHeroAnimationState(prev => ({ ...prev, title: true }))
+      }, 300)
+      
+      setTimeout(() => {
+        setHeroAnimationState(prev => ({ ...prev, subtitle: true }))
+      }, 800)
+      
+      setTimeout(() => {
+        setHeroAnimationState(prev => ({ ...prev, button: true }))
+      }, 1200)
+    }
+    
+    sequence()
+  }, [])
 
   const toggleStep = (index: number) => {
     setExpandedStep(expandedStep === index ? null : index)
@@ -70,17 +135,40 @@ export default function OurProcess() {
       <Section background="navy" padding="xl">
         <Container>
           <div className="text-center">
-            <h1 className="font-heading text-4xl md:text-6xl font-bold text-yb-white mb-6">
+            <h1 className={`font-heading text-4xl md:text-6xl font-bold text-yb-white mb-6 transition-all duration-1000 ease-out ${
+              heroAnimationState.title 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 -translate-y-12'
+            }`}
+            style={{
+              transition: 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)'
+            }}>
               Our Proven Process = Your{' '}
               <span className="text-yb-beige">Competitive Edge</span>
             </h1>
-            <p className="text-xl text-yb-beige-light max-w-3xl mx-auto mb-8 leading-relaxed">
+            <p className={`text-xl text-yb-beige-light max-w-3xl mx-auto mb-8 leading-relaxed transition-all duration-1000 ease-out ${
+              heroAnimationState.subtitle 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 -translate-y-8'
+            }`}
+            style={{
+              transition: 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)'
+            }}>
               Every competitive advantage starts with understanding exactly where you stand. 
               Our proven 4-phase process transforms research into results.
             </p>
-            <Button href="/getting-started" variant="primary" size="lg">
-              Start Your Analysis
-            </Button>
+            <div className={`transition-all duration-1000 ease-out ${
+              heroAnimationState.button 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+            style={{
+              transition: 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)'
+            }}>
+              <Button href="/getting-started" variant="primary" size="lg">
+                Start Your Analysis
+              </Button>
+            </div>
           </div>
         </Container>
       </Section>
@@ -88,20 +176,52 @@ export default function OurProcess() {
       {/* Process Overview */}
       <Section background="white" padding="xl">
         <Container>
-          <div className="text-center mb-16 square-box-beige p-8">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
+          <div ref={overviewTitleRef} className={`text-center mb-16 square-box-beige p-8 transition-all duration-1500 ease-out ${
+            isOverviewTitleVisible 
+              ? 'opacity-100 scale-100' 
+              : 'opacity-0 scale-95'
+          }`}
+          style={{
+            transition: 'all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            filter: isOverviewTitleVisible ? 'blur(0px)' : 'blur(1px)'
+          }}>
+            <h2 className={`font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4 transition-all duration-1000 ease-out ${
+              isOverviewTitleVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 -translate-y-12'
+            }`}
+            style={{
+              transition: 'all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
+              transitionDelay: '0.3s'
+            }}>
               Research & Analysis Deep Dive
             </h2>
-            <p className="text-lg text-yb-navy-light max-w-2xl mx-auto">
+            <p className={`text-lg text-yb-navy-light max-w-2xl mx-auto transition-all duration-1000 ease-out ${
+              isOverviewTitleVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 -translate-y-8'
+            }`}
+            style={{
+              transition: 'all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)',
+              transitionDelay: '0.6s'
+            }}>
               We don&apos;t guess - we analyze. Our research phase uncovers exactly what your competitors are doing right and where you can gain the advantage.
             </p>
           </div>
 
           {/* Process Timeline */}
-          <div className="mb-16">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="mb-16" ref={processTimelineRef}>
+            <div className={`grid grid-cols-1 md:grid-cols-4 gap-8 transform transition-all duration-1000 ease-out ${
+              isProcessTimelineVisible 
+                ? 'translate-y-0 opacity-100' 
+                : 'translate-y-12 opacity-0'
+            }`}>
               {processSteps.map((step, index) => (
-                <Card key={index} className="p-6 text-center cursor-pointer hover:shadow-lg transition-all duration-300 square-box" onClick={() => toggleStep(index)}>
+                <Card key={index} className={`p-6 text-center cursor-pointer hover:shadow-lg transition-all duration-300 square-box transform ${
+                  isProcessTimelineVisible 
+                    ? 'translate-y-0 opacity-100 scale-100' 
+                    : 'translate-y-12 opacity-0 scale-95'
+                }`} style={{ transitionDelay: `${index * 200}ms` }} onClick={() => toggleStep(index)}>
                   <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                     <span className="text-yb-navy font-bold text-xl">{index + 1}</span>
                   </div>
@@ -139,7 +259,14 @@ export default function OurProcess() {
       {/* Detailed Sections for Each Phase */}
       <Section background="beige" padding="xl">
         <Container>
-          <div className="text-center mb-16 square-box-beige p-8">
+          <div 
+            ref={strategicPlanningRef}
+            className={`text-center mb-16 square-box-beige p-8 transform transition-all duration-1000 ease-out ${
+              isStrategicPlanningVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`}
+          >
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
               Strategic Planning Phase
             </h2>
@@ -148,8 +275,16 @@ export default function OurProcess() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <Card className="p-8 square-box">
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 transform transition-all duration-1000 ease-out delay-300 ${
+            isStrategicPlanningVisible 
+              ? 'translate-y-0 opacity-100' 
+              : 'translate-y-12 opacity-0'
+          }`}>
+            <Card className={`p-8 square-box transform transition-all duration-1000 ease-out ${
+              isStrategicPlanningVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '500ms' }}>
               <h3 className="font-heading text-xl font-semibold text-yb-navy mb-6">
                 Competitive Strategy Map
               </h3>
@@ -184,7 +319,11 @@ export default function OurProcess() {
               </div>
             </Card>
 
-            <Card className="p-8 square-box">
+            <Card className={`p-8 square-box transform transition-all duration-1000 ease-out ${
+              isStrategicPlanningVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '700ms' }}>
               <h3 className="font-heading text-xl font-semibold text-yb-navy mb-6">
                 Priority Framework
               </h3>
@@ -213,7 +352,14 @@ export default function OurProcess() {
       {/* Creative Development Section */}
       <Section background="white" padding="xl">
         <Container>
-          <div className="text-center mb-16 square-box-beige p-8">
+          <div 
+            ref={creativeDevelopmentRef}
+            className={`text-center mb-16 square-box-beige p-8 transform transition-all duration-1000 ease-out ${
+              isCreativeDevelopmentVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`}
+          >
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
               Creative Development
             </h2>
@@ -222,8 +368,16 @@ export default function OurProcess() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <Card className="p-6 text-center square-box">
+          <div className={`grid grid-cols-1 lg:grid-cols-3 gap-8 transform transition-all duration-1000 ease-out delay-300 ${
+            isCreativeDevelopmentVisible 
+              ? 'translate-y-0 opacity-100' 
+              : 'translate-y-12 opacity-0'
+          }`}>
+            <Card className={`p-6 text-center square-box transform transition-all duration-1000 ease-out ${
+              isCreativeDevelopmentVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '500ms' }}>
               <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-yb-navy font-bold">🎨</span>
               </div>
@@ -235,7 +389,11 @@ export default function OurProcess() {
               </p>
             </Card>
 
-            <Card className="p-6 text-center square-box">
+            <Card className={`p-6 text-center square-box transform transition-all duration-1000 ease-out ${
+              isCreativeDevelopmentVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '700ms' }}>
               <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-yb-navy font-bold">📝</span>
               </div>
@@ -247,7 +405,11 @@ export default function OurProcess() {
               </p>
             </Card>
 
-            <Card className="p-6 text-center square-box">
+            <Card className={`p-6 text-center square-box transform transition-all duration-1000 ease-out ${
+              isCreativeDevelopmentVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '900ms' }}>
               <div className="w-16 h-16 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-yb-navy font-bold">⚡</span>
               </div>
@@ -265,7 +427,14 @@ export default function OurProcess() {
       {/* Technical Excellence Section */}
       <Section background="navy" padding="xl">
         <Container>
-          <div className="text-center mb-16 square-box-navy p-8">
+          <div 
+            ref={technicalExcellenceRef}
+            className={`text-center mb-16 square-box-navy p-8 transform transition-all duration-1000 ease-out ${
+              isTechnicalExcellenceVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`}
+          >
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-white mb-4">
               Technical Excellence
             </h2>
@@ -274,20 +443,40 @@ export default function OurProcess() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="p-6 bg-yb-beige bg-opacity-10 text-center square-box">
+          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 transform transition-all duration-1000 ease-out delay-300 ${
+            isTechnicalExcellenceVisible 
+              ? 'translate-y-0 opacity-100' 
+              : 'translate-y-12 opacity-0'
+          }`}>
+            <Card className={`p-6 bg-yb-beige bg-opacity-10 text-center square-box transform transition-all duration-1000 ease-out ${
+              isTechnicalExcellenceVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '500ms' }}>
               <div className="text-3xl font-bold text-yb-beige mb-2">&lt;3s</div>
               <p className="text-yb-beige-light text-sm">Page Load Time</p>
             </Card>
-            <Card className="p-6 bg-yb-beige bg-opacity-10 text-center square-box">
+            <Card className={`p-6 bg-yb-beige bg-opacity-10 text-center square-box transform transition-all duration-1000 ease-out ${
+              isTechnicalExcellenceVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '700ms' }}>
               <div className="text-3xl font-bold text-yb-beige mb-2">100</div>
               <p className="text-yb-beige-light text-sm">Lighthouse Score</p>
             </Card>
-            <Card className="p-6 bg-yb-beige bg-opacity-10 text-center square-box">
+            <Card className={`p-6 bg-yb-beige bg-opacity-10 text-center square-box transform transition-all duration-1000 ease-out ${
+              isTechnicalExcellenceVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '900ms' }}>
               <div className="text-3xl font-bold text-yb-beige mb-2">A+</div>
               <p className="text-yb-beige-light text-sm">Security Grade</p>
             </Card>
-            <Card className="p-6 bg-yb-beige bg-opacity-10 text-center square-box">
+            <Card className={`p-6 bg-yb-beige bg-opacity-10 text-center square-box transform transition-all duration-1000 ease-out ${
+              isTechnicalExcellenceVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '1100ms' }}>
               <div className="text-3xl font-bold text-yb-beige mb-2">99.9%</div>
               <p className="text-yb-beige-light text-sm">Uptime</p>
             </Card>
@@ -298,7 +487,14 @@ export default function OurProcess() {
       {/* Continuous Optimization */}
       <Section background="beige" padding="xl">
         <Container>
-          <div className="text-center mb-16 square-box-beige p-8">
+          <div 
+            ref={continuousOptimizationRef}
+            className={`text-center mb-16 square-box-beige p-8 transform transition-all duration-1000 ease-out ${
+              isContinuousOptimizationVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`}
+          >
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
               Continuous Optimization
             </h2>
@@ -307,9 +503,17 @@ export default function OurProcess() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 transform transition-all duration-1000 ease-out delay-300 ${
+            isContinuousOptimizationVisible 
+              ? 'translate-y-0 opacity-100' 
+              : 'translate-y-12 opacity-0'
+          }`}>
             {/* Analytics Dashboard Preview */}
-            <Card className="p-8 square-box">
+            <Card className={`p-8 square-box transform transition-all duration-1000 ease-out ${
+              isContinuousOptimizationVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '500ms' }}>
               <h3 className="font-heading text-xl font-semibold text-yb-navy mb-6">
                 Performance Monitoring
               </h3>
@@ -335,7 +539,11 @@ export default function OurProcess() {
               </div>
             </Card>
 
-            <Card className="p-8 square-box">
+            <Card className={`p-8 square-box transform transition-all duration-1000 ease-out ${
+              isContinuousOptimizationVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '700ms' }}>
               <h3 className="font-heading text-xl font-semibold text-yb-navy mb-6">
                 Competitive Monitoring
               </h3>
@@ -364,16 +572,29 @@ export default function OurProcess() {
       {/* Final CTA */}
       <Section background="navy" padding="xl">
         <Container>
-          <div className="text-center">
+          <div 
+            ref={finalCtaRef}
+            className={`text-center transform transition-all duration-1000 ease-out ${
+              isFinalCtaVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`}
+          >
             <h2 className="font-heading text-3xl md:text-5xl font-bold text-yb-white mb-6">
               Ready to Start Your Competitive Analysis?
             </h2>
             <p className="text-xl text-yb-beige-light mb-8 max-w-3xl mx-auto leading-relaxed">
               See exactly where you stand against your competition and get a strategic roadmap for dominating your market.
             </p>
-            <Button href="/getting-started" variant="primary" size="lg">
-              Start Your Competitive Analysis
-            </Button>
+            <div className={`transform transition-all duration-1000 ease-out delay-300 ${
+              isFinalCtaVisible 
+                ? 'translate-y-0 opacity-100' 
+                : 'translate-y-12 opacity-0'
+            }`}>
+              <Button href="/getting-started" variant="primary" size="lg">
+                Start Your Competitive Analysis
+              </Button>
+            </div>
           </div>
         </Container>
       </Section>

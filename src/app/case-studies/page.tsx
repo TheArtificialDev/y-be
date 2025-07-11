@@ -1,13 +1,109 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Section from '@/components/Section'
 import Container from '@/components/Container'
 import Card from '@/components/Card'
 import Button from '@/components/Button'
 
+// Custom hook for bidirectional intersection observer
+function useBidirectionalIntersectionObserver() {
+  const [isVisible, setIsVisible] = useState(false)
+  const [hasLeft, setHasLeft] = useState(false)
+  const [hasBeenVisible, setHasBeenVisible] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          setHasLeft(false)
+          setHasBeenVisible(true)
+        } else {
+          // Only trigger fade out if element has been visible before
+          // This prevents issues when scrolling from bottom up
+          if (hasBeenVisible) {
+            setIsVisible(false)
+            setHasLeft(true)
+          }
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [hasBeenVisible])
+
+  return { ref, isVisible, hasLeft }
+}
+
+// Custom hook for case studies grid that doesn't fade out on filter change
+function useCaseStudiesIntersectionObserver() {
+  const [isVisible, setIsVisible] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+        // Note: We don't set isVisible to false when leaving viewport
+        // This prevents cards from disappearing when filters change
+      },
+      { threshold: 0.1 }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, isVisible }
+}
+
+// Custom hook for one-way intersection observer (for hero sections)
+function useIntersectionObserver() {
+  const [isVisible, setIsVisible] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  return { ref, isVisible }
+}
+
 export default function CaseStudies() {
   const [activeIndustry, setActiveIndustry] = useState('all')
+  
+  // Animation hooks
+  const heroAnimation = useIntersectionObserver()
+  const industryAnimation = useCaseStudiesIntersectionObserver() // Use special hook for case studies
+  const transformationAnimation = useBidirectionalIntersectionObserver()
+  const testimonialsAnimation = useBidirectionalIntersectionObserver()
+  const resultsAnimation = useBidirectionalIntersectionObserver()
+  const ctaAnimation = useBidirectionalIntersectionObserver()
 
   const caseStudies = [
     {
@@ -89,7 +185,14 @@ export default function CaseStudies() {
       {/* Case Studies Hero Section */}
       <Section background="navy" padding="xl">
         <Container>
-          <div className="text-center">
+          <div 
+            ref={heroAnimation.ref}
+            className={`text-center transform transition-all duration-1000 ease-out ${
+              heroAnimation.isVisible 
+                ? 'translate-y-0 opacity-100' 
+                : 'translate-y-8 opacity-0'
+            }`}
+          >
             <h1 className="font-heading text-4xl md:text-6xl font-bold text-yb-white mb-6">
               Real Clients. Real Wins.{' '}
               <span className="text-yb-beige">Real Advantage.</span>
@@ -98,19 +201,19 @@ export default function CaseStudies() {
               See how businesses just like yours have gained sustainable competitive advantages through our strategic approach.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="text-center square-box p-4">
+              <div className="text-center square-box p-4 transform transition-all duration-1000 ease-out delay-200">
                 <div className="text-3xl font-bold text-yb-beige mb-2">+187%</div>
                 <div className="text-sm text-yb-beige-light">Avg. Traffic Growth</div>
               </div>
-              <div className="text-center square-box p-4">
+              <div className="text-center square-box p-4 transform transition-all duration-1000 ease-out delay-300">
                 <div className="text-3xl font-bold text-yb-beige mb-2">+219%</div>
                 <div className="text-sm text-yb-beige-light">Avg. Conversion Growth</div>
               </div>
-              <div className="text-center square-box p-4">
+              <div className="text-center square-box p-4 transform transition-all duration-1000 ease-out delay-500">
                 <div className="text-3xl font-bold text-yb-beige mb-2">4.2x</div>
                 <div className="text-sm text-yb-beige-light">ROI Improvement</div>
               </div>
-              <div className="text-center square-box p-4">
+              <div className="text-center square-box p-4 transform transition-all duration-1000 ease-out delay-700">
                 <div className="text-3xl font-bold text-yb-beige mb-2">15+</div>
                 <div className="text-sm text-yb-beige-light">Industries Served</div>
               </div>
@@ -122,7 +225,14 @@ export default function CaseStudies() {
       {/* Industry Expertise Showcase */}
       <Section background="white" padding="xl">
         <Container>
-          <div className="text-center mb-16 square-box-beige p-8">
+          <div 
+            ref={industryAnimation.ref}
+            className={`text-center mb-16 square-box-beige p-8 transform transition-all duration-1000 ease-out ${
+              industryAnimation.isVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`}
+          >
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
               Industry Expertise Showcase
             </h2>
@@ -132,7 +242,11 @@ export default function CaseStudies() {
           </div>
 
           {/* Industry Filter */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className={`flex flex-wrap justify-center gap-4 mb-12 transform transition-all duration-1000 ease-out delay-200 ${
+            industryAnimation.isVisible 
+              ? 'translate-y-0 opacity-100' 
+              : 'translate-y-12 opacity-0'
+          }`}>
             {industries.map((industry) => (
               <button
                 key={industry.id}
@@ -150,9 +264,17 @@ export default function CaseStudies() {
           </div>
 
           {/* Case Studies Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {filteredCaseStudies.map((study) => (
-              <Card key={study.id} className="p-8 hover:shadow-lg transition-all duration-300 square-box">
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 transform transition-all duration-1000 ease-out delay-400 ${
+            industryAnimation.isVisible 
+              ? 'translate-y-0 opacity-100' 
+              : 'translate-y-12 opacity-0'
+          }`}>
+            {filteredCaseStudies.map((study, index) => (
+              <Card key={study.id} className={`p-8 hover:shadow-lg transition-all duration-300 square-box transform ${
+                industryAnimation.isVisible 
+                  ? 'translate-y-0 opacity-100 scale-100' 
+                  : 'translate-y-12 opacity-0 scale-95'
+              }`} style={{ transitionDelay: `${600 + index * 200}ms` }}>
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="font-heading text-xl font-bold text-yb-navy">{study.client}</h3>
                   <span className="bg-yb-beige bg-opacity-30 text-yb-navy px-3 py-1 rounded-full text-sm font-medium">
@@ -199,7 +321,16 @@ export default function CaseStudies() {
       {/* Before/After Transformations */}
       <Section background="beige" padding="xl">
         <Container>
-          <div className="text-center mb-16 square-box-beige p-8">
+          <div 
+            ref={transformationAnimation.ref}
+            className={`text-center mb-16 square-box-beige p-8 transform transition-all duration-1000 ease-out ${
+              transformationAnimation.isVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : transformationAnimation.hasLeft 
+                ? 'translate-y-8 opacity-0 scale-95' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`}
+          >
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
               Before/After Transformations
             </h2>
@@ -208,8 +339,20 @@ export default function CaseStudies() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-6 square-box-beige">
+          <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 transform transition-all duration-1000 ease-out delay-300 ${
+            transformationAnimation.isVisible 
+              ? 'translate-y-0 opacity-100' 
+              : transformationAnimation.hasLeft 
+              ? 'translate-y-8 opacity-0' 
+              : 'translate-y-12 opacity-0'
+          }`}>
+            <Card className={`p-6 square-box-beige transform transition-all duration-1000 ease-out ${
+              transformationAnimation.isVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : transformationAnimation.hasLeft 
+                ? 'translate-y-8 opacity-0 scale-95' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '500ms' }}>
               <h3 className="font-heading text-lg font-semibold text-yb-beige mb-4">Performance Metrics</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
@@ -236,7 +379,13 @@ export default function CaseStudies() {
               </div>
             </Card>
 
-            <Card className="p-6 square-box-beige">
+            <Card className={`p-6 square-box-beige transform transition-all duration-1000 ease-out ${
+              transformationAnimation.isVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : transformationAnimation.hasLeft 
+                ? 'translate-y-8 opacity-0 scale-95' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '700ms' }}>
               <h3 className="font-heading text-lg font-semibold text-yb-beige mb-4">Search Rankings</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
@@ -263,7 +412,13 @@ export default function CaseStudies() {
               </div>
             </Card>
 
-            <Card className="p-6 square-box-beige">
+            <Card className={`p-6 square-box-beige transform transition-all duration-1000 ease-out ${
+              transformationAnimation.isVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : transformationAnimation.hasLeft 
+                ? 'translate-y-8 opacity-0 scale-95' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '900ms' }}>
               <h3 className="font-heading text-lg font-semibold text-yb-beige mb-4">Business Impact</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
@@ -296,7 +451,16 @@ export default function CaseStudies() {
       {/* Client Testimonials */}
       <Section background="white" padding="xl">
         <Container>
-          <div className="text-center mb-16 square-box-beige p-8">
+          <div 
+            ref={testimonialsAnimation.ref}
+            className={`text-center mb-16 square-box-beige p-8 transform transition-all duration-1000 ease-out ${
+              testimonialsAnimation.isVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : testimonialsAnimation.hasLeft 
+                ? 'translate-y-8 opacity-0 scale-95' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`}
+          >
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
               What Our Clients Say
             </h2>
@@ -305,8 +469,20 @@ export default function CaseStudies() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="p-8 bg-yb-beige bg-opacity-20 square-box-beige">
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 transform transition-all duration-1000 ease-out delay-300 ${
+            testimonialsAnimation.isVisible 
+              ? 'translate-y-0 opacity-100' 
+              : testimonialsAnimation.hasLeft 
+              ? 'translate-y-8 opacity-0' 
+              : 'translate-y-12 opacity-0'
+          }`}>
+            <Card className={`p-8 bg-yb-beige bg-opacity-20 square-box-beige transform transition-all duration-1000 ease-out ${
+              testimonialsAnimation.isVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : testimonialsAnimation.hasLeft 
+                ? 'translate-y-8 opacity-0 scale-95' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '500ms' }}>
               <div className="text-4xl text-yb-beige mb-4">&ldquo;</div>
               <p className="text-yb-navy mb-6 italic">
                 &ldquo;The competitive analysis was eye-opening. We had no idea how much we were falling behind until Y-Be showed us exactly where our competitors were winning. The strategic roadmap they provided became our blueprint for dominating our market.&rdquo;
@@ -322,7 +498,13 @@ export default function CaseStudies() {
               </div>
             </Card>
 
-            <Card className="p-8 bg-yb-beige bg-opacity-20 square-box-beige">
+            <Card className={`p-8 bg-yb-beige bg-opacity-20 square-box-beige transform transition-all duration-1000 ease-out ${
+              testimonialsAnimation.isVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : testimonialsAnimation.hasLeft 
+                ? 'translate-y-8 opacity-0 scale-95' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`} style={{ transitionDelay: '700ms' }}>
               <div className="text-4xl text-yb-beige mb-4">&ldquo;</div>
               <p className="text-yb-navy mb-6 italic">
                 &ldquo;Y-Be didn&apos;t just build us a website - they engineered our competitive advantage. Our ROI from their work exceeded our expectations by 340%. We&apos;re now the go-to choice in our industry.&rdquo;
@@ -344,7 +526,16 @@ export default function CaseStudies() {
       {/* Results Gallery */}
       <Section background="beige" padding="xl">
         <Container>
-          <div className="text-center mb-16">
+          <div 
+            ref={resultsAnimation.ref}
+            className={`text-center mb-16 transform transition-all duration-1000 ease-out ${
+              resultsAnimation.isVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : resultsAnimation.hasLeft 
+                ? 'translate-y-8 opacity-0 scale-95' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`}
+          >
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
               Results Gallery
             </h2>
@@ -353,7 +544,13 @@ export default function CaseStudies() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transform transition-all duration-1000 ease-out delay-300 ${
+            resultsAnimation.isVisible 
+              ? 'translate-y-0 opacity-100' 
+              : resultsAnimation.hasLeft 
+              ? 'translate-y-8 opacity-0' 
+              : 'translate-y-12 opacity-0'
+          }`}>
             {[
               { metric: "+289%", detail: "Conversion Rate", industry: "E-Commerce" },
               { metric: "+213%", detail: "Organic Traffic", industry: "SaaS" },
@@ -362,7 +559,13 @@ export default function CaseStudies() {
               { metric: "4.2x", detail: "Market Share", industry: "Professional Services" },
               { metric: "+156%", detail: "Brand Authority", industry: "Healthcare" }
             ].map((result, index) => (
-              <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 group square-box">
+              <Card key={index} className={`p-6 hover:shadow-lg transition-all duration-300 group square-box transform ${
+                resultsAnimation.isVisible 
+                  ? 'translate-y-0 opacity-100 scale-100' 
+                  : resultsAnimation.hasLeft 
+                  ? 'translate-y-8 opacity-0 scale-95' 
+                  : 'translate-y-12 opacity-0 scale-95'
+              }`} style={{ transitionDelay: `${500 + index * 100}ms` }}>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-yb-beige mb-2 group-hover:text-yb-beige-light transition-colors">
                     {result.metric}
@@ -381,7 +584,16 @@ export default function CaseStudies() {
       {/* Success Story CTA */}
       <Section background="navy" padding="xl">
         <Container>
-          <div className="text-center">
+          <div 
+            ref={ctaAnimation.ref}
+            className={`text-center transform transition-all duration-1000 ease-out ${
+              ctaAnimation.isVisible 
+                ? 'translate-y-0 opacity-100 scale-100' 
+                : ctaAnimation.hasLeft 
+                ? 'translate-y-8 opacity-0 scale-95' 
+                : 'translate-y-12 opacity-0 scale-95'
+            }`}
+          >
             <h2 className="font-heading text-3xl md:text-5xl font-bold text-yb-white mb-6">
               Let&apos;s Create Your Success Story
             </h2>
@@ -389,7 +601,13 @@ export default function CaseStudies() {
               Join the businesses that chose competitive advantage over generic solutions. 
               Your strategic transformation starts with understanding where you stand against your competition.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className={`flex flex-col sm:flex-row gap-4 justify-center transform transition-all duration-1000 ease-out delay-300 ${
+              ctaAnimation.isVisible 
+                ? 'translate-y-0 opacity-100' 
+                : ctaAnimation.hasLeft 
+                ? 'translate-y-8 opacity-0' 
+                : 'translate-y-12 opacity-0'
+            }`}>
               <Button href="/getting-started" variant="primary" size="lg">
                 Get Your Free Competitive Analysis
               </Button>
