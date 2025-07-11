@@ -232,20 +232,59 @@ div:not([class*="bg-"]) {
   overflow: hidden !important;
 }
 
-/* Simple test animation */
-@keyframes testFloat {
-  0% { transform: translateX(0px); }
-  50% { transform: translateX(100px); }
-  100% { transform: translateX(0px); }
+/* Smooth continuous floating animations */
+@keyframes floatNorthEast {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(100px, -100px) rotate(360deg); }
+}
+
+@keyframes floatSouthWest {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(-120px, 120px) rotate(-360deg); }
+}
+
+@keyframes floatNorthWest {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(-80px, -80px) rotate(360deg); }
+}
+
+@keyframes floatSouthEast {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(90px, 90px) rotate(-360deg); }
+}
+
+@keyframes floatVertical {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-150px) rotate(180deg); }
+}
+
+@keyframes floatHorizontal {
+  0% { transform: translateX(0) rotate(0deg); }
+  100% { transform: translateX(130px) rotate(-180deg); }
+}
+
+@keyframes floatCircular {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(60px, -60px) rotate(90deg); }
+  50% { transform: translate(0, -120px) rotate(180deg); }
+  75% { transform: translate(-60px, -60px) rotate(270deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes floatSpiral {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  25% { transform: translate(40px, -30px) rotate(90deg) scale(1.1); }
+  50% { transform: translate(20px, -80px) rotate(180deg) scale(0.9); }
+  75% { transform: translate(-30px, -50px) rotate(270deg) scale(1.05); }
+  100% { transform: translate(0, 0) rotate(360deg) scale(1); }
 }
 
 .floating-shape {
   position: absolute !important;
-  background: rgba(217, 187, 164, 0.8) !important;
-  border: 2px solid rgba(217, 187, 164, 0.9) !important;
+  background: rgba(217, 187, 164, 0.4) !important;
+  border: 1px solid rgba(217, 187, 164, 0.2) !important;
   transform-origin: center !important;
   will-change: transform !important;
-  animation: testFloat 2s ease-in-out infinite !important;
 }
 
 /* Shape Types */
@@ -355,24 +394,36 @@ div:not([class*="bg-"]) {
   }
 }
 
-.floating-animate-clockwise {
-  animation: floatClockwise ease-in-out infinite !important;
+.floating-animate-northeast {
+  animation: floatNorthEast 25s linear infinite !important;
 }
 
-.floating-animate-counterclockwise {
-  animation: floatCounterClockwise ease-in-out infinite !important;
+.floating-animate-southwest {
+  animation: floatSouthWest 30s linear infinite !important;
 }
 
-.floating-animate-diagonal {
-  animation: floatDiagonal ease-in-out infinite !important;
+.floating-animate-northwest {
+  animation: floatNorthWest 28s linear infinite !important;
 }
 
-.floating-animate-wave {
-  animation: floatWave ease-in-out infinite !important;
+.floating-animate-southeast {
+  animation: floatSouthEast 26s linear infinite !important;
+}
+
+.floating-animate-vertical {
+  animation: floatVertical 20s linear infinite !important;
+}
+
+.floating-animate-horizontal {
+  animation: floatHorizontal 22s linear infinite !important;
+}
+
+.floating-animate-circular {
+  animation: floatCircular 35s ease-in-out infinite !important;
 }
 
 .floating-animate-spiral {
-  animation: floatSpiral ease-in-out infinite !important;
+  animation: floatSpiral 32s ease-in-out infinite !important;
 }
 
 /* Responsive adjustments */

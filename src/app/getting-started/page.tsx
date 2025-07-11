@@ -10,15 +10,18 @@ export default function GettingStarted() {
   const [formData, setFormData] = useState({
     businessName: '',
     website: '',
-    competitor1: '',
-    competitor2: '',
-    competitor3: '',
+    industry: '',
+    businessDescription: '',
     challenges: [] as string[],
     goals: [] as string[],
     budget: '',
     contactMethod: 'email',
     timeline: 'asap'
   })
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const challenges = [
     'Low website traffic',
@@ -56,10 +59,48 @@ export default function GettingStarted() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission logic here
-    console.log('Form submitted:', formData)
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        // Reset form after successful submission
+        setFormData({
+          businessName: '',
+          website: '',
+          industry: '',
+          businessDescription: '',
+          challenges: [],
+          goals: [],
+          budget: '',
+          contactMethod: 'email',
+          timeline: 'asap'
+        })
+      } else {
+        setSubmitStatus('error')
+        setErrorMessage(result.error || 'Something went wrong. Please try again.')
+      }
+    } catch (error) {
+      setSubmitStatus('error')
+      setErrorMessage('Network error. Please check your connection and try again.')
+      console.error('Form submission error:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -149,45 +190,42 @@ export default function GettingStarted() {
                   Competitor Intelligence
                 </h3>
                 <p className="text-yb-navy-light mb-6">
-                  Who are your main competitors? (This helps us understand your competitive landscape)
+                  Help us understand your business and industry to create a targeted competitive analysis
                 </p>
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <div>
                     <label className="block text-yb-navy font-medium mb-2">
-                      Top Competitor #1 *
+                      Industry You Are In *
                     </label>
                     <input
                       type="text"
-                      value={formData.competitor1}
-                      onChange={(e) => setFormData(prev => ({ ...prev, competitor1: e.target.value }))}
+                      value={formData.industry}
+                      onChange={(e) => setFormData(prev => ({ ...prev, industry: e.target.value }))}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yb-beige focus:border-yb-beige"
-                      placeholder="Competitor business name or website"
+                      placeholder="e.g., Technology, Healthcare, E-commerce, Professional Services"
                       required
                     />
                   </div>
                   <div>
                     <label className="block text-yb-navy font-medium mb-2">
-                      Top Competitor #2
+                      About Your Business *
                     </label>
-                    <input
-                      type="text"
-                      value={formData.competitor2}
-                      onChange={(e) => setFormData(prev => ({ ...prev, competitor2: e.target.value }))}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yb-beige focus:border-yb-beige"
-                      placeholder="Competitor business name or website"
+                    <textarea
+                      value={formData.businessDescription}
+                      onChange={(e) => setFormData(prev => ({ ...prev, businessDescription: e.target.value }))}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yb-beige focus:border-yb-beige h-32 resize-vertical"
+                      placeholder="Tell us about your business. Consider answering:
+• What products or services do you offer?
+• Who is your target audience?
+• What makes you unique in your market?
+• What are your main business goals?
+• What challenges are you currently facing?
+• How long have you been in business?"
+                      required
                     />
-                  </div>
-                  <div>
-                    <label className="block text-yb-navy font-medium mb-2">
-                      Top Competitor #3
-                    </label>
-                    <input
-                      type="text"
-                      value={formData.competitor3}
-                      onChange={(e) => setFormData(prev => ({ ...prev, competitor3: e.target.value }))}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yb-beige focus:border-yb-beige"
-                      placeholder="Competitor business name or website"
-                    />
+                    <p className="text-sm text-yb-navy-light mt-2">
+                      The more detail you provide, the better we can tailor our competitive analysis to your specific situation.
+                    </p>
                   </div>
                 </div>
               </Card>
@@ -275,13 +313,56 @@ export default function GettingStarted() {
               </Card>
 
               {/* Submit Button */}
-              <div className="text-center">
-                <Button type="submit" variant="primary" size="lg" className="px-12">
-                  Request My Competitive Analysis
-                </Button>
-                <p className="text-yb-navy-light text-sm mt-4">
-                  We&apos;ll deliver your personalized competitive analysis within 48 hours
+              <div className="text-center bg-gradient-to-r from-yb-navy to-yb-navy-light p-8 rounded-xl">
+                <div className="bg-yb-beige text-yb-navy px-4 py-2 rounded-full inline-block mb-4">
+                  <span className="font-bold text-sm">🎯 CLAIM YOUR ADVANTAGE</span>
+                </div>
+                
+                {submitStatus === 'success' ? (
+                  <div className="text-center">
+                    <div className="text-green-400 text-6xl mb-4">✓</div>
+                    <h3 className="text-2xl font-bold text-yb-beige mb-4">Success! Your Analysis is On the Way</h3>
+                    <p className="text-yb-beige-light mb-4">
+                      We've received your information and will send your competitive analysis within 48 hours.
+                    </p>
+                  </div>
+                ) : (
+                  <>
+                    <Button 
+                      type="submit" 
+                      variant="primary" 
+                      size="lg" 
+                      disabled={isSubmitting}
+                      className={`px-16 py-4 text-xl font-bold bg-yb-beige hover:bg-yb-beige-light text-yb-navy shadow-2xl transform hover:scale-105 transition-all duration-300 ${
+                        isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                      }`}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <span className="animate-spin mr-2">⏳</span>
+                          PROCESSING YOUR REQUEST...
+                        </>
+                      ) : (
+                        '🚀 REQUEST MY COMPETITIVE ADVANTAGE'
+                      )}
+                    </Button>
+                    
+                    {submitStatus === 'error' && (
+                      <div className="mt-4 p-3 bg-red-100 border border-red-300 rounded-lg">
+                        <p className="text-red-700 font-medium">{errorMessage}</p>
+                      </div>
+                    )}
+                  </>
+                )}
+                
+                <p className="text-yb-beige-light text-sm mt-4 font-medium">
+                  ⚡ We&apos;ll deliver your personalized competitive analysis within 48 hours
                 </p>
+                <div className="flex justify-center items-center gap-6 mt-4 text-xs text-yb-beige-light">
+                  <span>✓ 100% Free Analysis</span>
+                  <span>✓ No Commitment Required</span>
+                  <span>✓ Actionable Insights</span>
+                </div>
               </div>
             </form>
           </div>
