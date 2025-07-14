@@ -97,6 +97,14 @@ function useIntersectionObserver() {
 export default function CaseStudies() {
   const [activeIndustry, setActiveIndustry] = useState('all')
   
+  // Hero animation state (sequential animation)
+  const [heroAnimationState, setHeroAnimationState] = useState({
+    realClients: false,
+    realWins: false,
+    realAdvantage: false,
+    content: false
+  })
+
   // Animation hooks
   const heroAnimation = useIntersectionObserver()
   const industryAnimation = useCaseStudiesIntersectionObserver() // Use special hook for case studies
@@ -104,6 +112,29 @@ export default function CaseStudies() {
   const testimonialsAnimation = useBidirectionalIntersectionObserver()
   const resultsAnimation = useBidirectionalIntersectionObserver()
   const ctaAnimation = useBidirectionalIntersectionObserver()
+
+  // Hero animation sequence
+  useEffect(() => {
+    const sequence = async () => {
+      setTimeout(() => {
+        setHeroAnimationState(prev => ({ ...prev, realClients: true }))
+      }, 500)
+      
+      setTimeout(() => {
+        setHeroAnimationState(prev => ({ ...prev, realWins: true }))
+      }, 1200)
+      
+      setTimeout(() => {
+        setHeroAnimationState(prev => ({ ...prev, realAdvantage: true }))
+      }, 1900)
+      
+      setTimeout(() => {
+        setHeroAnimationState(prev => ({ ...prev, content: true }))
+      }, 2600)
+    }
+    
+    sequence()
+  }, [])
 
   const caseStudies = [
     {
@@ -183,39 +214,112 @@ export default function CaseStudies() {
   return (
     <div>
       {/* Case Studies Hero Section */}
-      <Section background="navy" padding="xl">
+      <Section background="navy" padding="sm" className="min-h-screen flex items-center justify-center py-0">
         <Container>
           <div 
             ref={heroAnimation.ref}
-            className={`text-center transform transition-all duration-1000 ease-out ${
-              heroAnimation.isVisible 
-                ? 'translate-y-0 opacity-100' 
-                : 'translate-y-8 opacity-0'
-            }`}
+            className="text-center py-16 min-h-screen flex flex-col justify-center"
           >
-            <h1 className="font-heading text-4xl md:text-6xl font-bold text-yb-white mb-6">
-              Real Clients. Real Wins.{' '}
-              <span className="text-yb-beige">Real Advantage.</span>
+            <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-yb-white mb-8">
+              <span className={`inline-block transition-all duration-1500 ease-out ${
+                heroAnimationState.realClients 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-12'
+              }`}
+              style={{
+                transition: 'all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                filter: heroAnimationState.realClients ? 'blur(0px)' : 'blur(2px)'
+              }}>
+                Real Clients.
+              </span>{' '}
+              <span className={`inline-block transition-all duration-1500 ease-out ${
+                heroAnimationState.realWins 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-12'
+              }`}
+              style={{
+                transition: 'all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                filter: heroAnimationState.realWins ? 'blur(0px)' : 'blur(2px)'
+              }}>
+                Real Wins.
+              </span>{' '}
+              <span className={`text-yb-beige inline-block transition-all duration-1500 ease-out ${
+                heroAnimationState.realAdvantage 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-12'
+              }`}
+              style={{
+                transition: 'all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                filter: heroAnimationState.realAdvantage ? 'blur(0px)' : 'blur(2px)'
+              }}>
+                Real Advantage.
+              </span>
             </h1>
-            <p className="text-xl text-yb-beige-light max-w-3xl mx-auto mb-8 leading-relaxed">
-              See how businesses just like yours have gained sustainable competitive advantages through our strategic approach.
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="text-center square-box p-4 transform transition-all duration-1000 ease-out delay-200">
-                <div className="text-3xl font-bold text-yb-beige mb-2">+187%</div>
-                <div className="text-sm text-yb-beige-light">Avg. Traffic Growth</div>
-              </div>
-              <div className="text-center square-box p-4 transform transition-all duration-1000 ease-out delay-300">
-                <div className="text-3xl font-bold text-yb-beige mb-2">+219%</div>
-                <div className="text-sm text-yb-beige-light">Avg. Conversion Growth</div>
-              </div>
-              <div className="text-center square-box p-4 transform transition-all duration-1000 ease-out delay-500">
-                <div className="text-3xl font-bold text-yb-beige mb-2">4.2x</div>
-                <div className="text-sm text-yb-beige-light">ROI Improvement</div>
-              </div>
-              <div className="text-center square-box p-4 transform transition-all duration-1000 ease-out delay-700">
-                <div className="text-3xl font-bold text-yb-beige mb-2">15+</div>
-                <div className="text-sm text-yb-beige-light">Industries Served</div>
+            <div className={`transition-all duration-1500 ease-out ${
+              heroAnimationState.content 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-16'
+            }`}
+            style={{
+              transition: 'all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+              filter: heroAnimationState.content ? 'blur(0px)' : 'blur(1px)'
+            }}>
+              <p className="text-xl md:text-2xl text-yb-beige-light max-w-4xl mx-auto mb-12 leading-relaxed">
+                See how businesses just like yours have gained sustainable competitive advantages through our strategic approach.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                <div className={`text-center square-box p-4 transform transition-all duration-1000 ease-out ${
+                  heroAnimationState.content 
+                    ? 'opacity-100 translate-y-0 scale-100' 
+                    : 'opacity-0 translate-y-8 scale-95'
+                }`}
+                style={{
+                  transition: 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  transitionDelay: '400ms',
+                  filter: heroAnimationState.content ? 'blur(0px)' : 'blur(1px)'
+                }}>
+                  <div className="text-3xl font-bold text-yb-beige mb-2">+187%</div>
+                  <div className="text-sm text-yb-beige-light">Avg. Traffic Growth</div>
+                </div>
+                <div className={`text-center square-box p-4 transform transition-all duration-1000 ease-out ${
+                  heroAnimationState.content 
+                    ? 'opacity-100 translate-y-0 scale-100' 
+                    : 'opacity-0 translate-y-8 scale-95'
+                }`}
+                style={{
+                  transition: 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  transitionDelay: '600ms',
+                  filter: heroAnimationState.content ? 'blur(0px)' : 'blur(1px)'
+                }}>
+                  <div className="text-3xl font-bold text-yb-beige mb-2">+219%</div>
+                  <div className="text-sm text-yb-beige-light">Avg. Conversion Growth</div>
+                </div>
+                <div className={`text-center square-box p-4 transform transition-all duration-1000 ease-out ${
+                  heroAnimationState.content 
+                    ? 'opacity-100 translate-y-0 scale-100' 
+                    : 'opacity-0 translate-y-8 scale-95'
+                }`}
+                style={{
+                  transition: 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  transitionDelay: '800ms',
+                  filter: heroAnimationState.content ? 'blur(0px)' : 'blur(1px)'
+                }}>
+                  <div className="text-3xl font-bold text-yb-beige mb-2">4.2x</div>
+                  <div className="text-sm text-yb-beige-light">ROI Improvement</div>
+                </div>
+                <div className={`text-center square-box p-4 transform transition-all duration-1000 ease-out ${
+                  heroAnimationState.content 
+                    ? 'opacity-100 translate-y-0 scale-100' 
+                    : 'opacity-0 translate-y-8 scale-95'
+                }`}
+                style={{
+                  transition: 'all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  transitionDelay: '1000ms',
+                  filter: heroAnimationState.content ? 'blur(0px)' : 'blur(1px)'
+                }}>
+                  <div className="text-3xl font-bold text-yb-beige mb-2">15+</div>
+                  <div className="text-sm text-yb-beige-light">Industries Served</div>
+                </div>
               </div>
             </div>
           </div>
@@ -227,93 +331,48 @@ export default function CaseStudies() {
         <Container>
           <div 
             ref={industryAnimation.ref}
-            className={`text-center mb-16 square-box-beige p-8 transform transition-all duration-1000 ease-out ${
+            className={`text-center square-box-beige p-12 transform transition-all duration-1000 ease-out ${
               industryAnimation.isVisible 
                 ? 'translate-y-0 opacity-100 scale-100' 
                 : 'translate-y-12 opacity-0 scale-95'
             }`}
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
-              Industry Expertise Showcase
-            </h2>
-            <p className="text-lg text-yb-navy-light max-w-2xl mx-auto">
-              Our strategic approach adapts to different markets while maintaining the same competitive edge focus.
-            </p>
-          </div>
-
-          {/* Industry Filter */}
-          <div className={`flex flex-wrap justify-center gap-4 mb-12 transform transition-all duration-1000 ease-out delay-200 ${
-            industryAnimation.isVisible 
-              ? 'translate-y-0 opacity-100' 
-              : 'translate-y-12 opacity-0'
-          }`}>
-            {industries.map((industry) => (
-              <button
-                key={industry.id}
-                onClick={() => setActiveIndustry(industry.id)}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  activeIndustry === industry.id
-                    ? 'bg-yb-navy text-yb-white'
-                    : 'bg-yb-beige bg-opacity-20 text-yb-navy hover:bg-yb-beige hover:bg-opacity-40'
-                }`}
-              >
-                <span className="mr-2">{industry.icon}</span>
-                {industry.name}
-              </button>
-            ))}
-          </div>
-
-          {/* Case Studies Grid */}
-          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 transform transition-all duration-1000 ease-out delay-400 ${
-            industryAnimation.isVisible 
-              ? 'translate-y-0 opacity-100' 
-              : 'translate-y-12 opacity-0'
-          }`}>
-            {filteredCaseStudies.map((study, index) => (
-              <Card key={study.id} className={`p-8 hover:shadow-lg transition-all duration-300 square-box transform ${
-                industryAnimation.isVisible 
-                  ? 'translate-y-0 opacity-100 scale-100' 
-                  : 'translate-y-12 opacity-0 scale-95'
-              }`} style={{ transitionDelay: `${600 + index * 200}ms` }}>
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="font-heading text-xl font-bold text-yb-navy">{study.client}</h3>
-                  <span className="bg-yb-beige bg-opacity-30 text-yb-navy px-3 py-1 rounded-full text-sm font-medium">
-                    {industries.find(i => i.id === study.industry)?.name}
-                  </span>
-                </div>
-
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="font-semibold text-yb-navy mb-2">Challenge</h4>
-                    <p className="text-yb-navy-light text-sm">{study.challenge}</p>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold text-yb-navy mb-2">Solution</h4>
-                    <p className="text-yb-navy-light text-sm">{study.solution}</p>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold text-yb-navy mb-3">Results in {study.results.timeframe}</h4>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-yb-beige bg-opacity-20 p-3 rounded-lg">
-                        <div className="text-2xl font-bold text-yb-navy">{study.results.traffic}</div>
-                        <div className="text-xs text-yb-navy-light">Traffic Growth</div>
-                      </div>
-                      <div className="bg-yb-beige bg-opacity-20 p-3 rounded-lg">
-                        <div className="text-2xl font-bold text-yb-navy">{study.results.conversions}</div>
-                        <div className="text-xs text-yb-navy-light">Conversions</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="border-t pt-6">
-                    <p className="text-yb-navy italic mb-2">&ldquo;{study.quote}&rdquo;</p>
-                    <p className="text-yb-navy-light text-sm">— {study.author}</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
+            <div className={`mb-8 transform transition-all duration-1000 ease-out ${
+              industryAnimation.isVisible 
+                ? 'translate-y-0 opacity-100' 
+                : 'translate-y-8 opacity-0'
+            }`}
+            style={{ transitionDelay: '200ms' }}>
+              <div className="w-20 h-20 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-3xl">✨</span>
+              </div>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-6">
+                Industry Deep Dives
+              </h2>
+              <p className="text-lg text-yb-navy-light max-w-2xl mx-auto mb-8 leading-relaxed">
+                We&apos;re crafting detailed industry-specific case studies that showcase our strategic approach across different markets. Each deep dive will reveal the unique competitive advantages we&apos;ve engineered for businesses in various sectors.
+              </p>
+            </div>
+            
+            <div className={`inline-flex items-center gap-3 bg-yb-navy bg-opacity-5 px-6 py-3 rounded-full transform transition-all duration-1000 ease-out ${
+              industryAnimation.isVisible 
+                ? 'translate-y-0 opacity-100' 
+                : 'translate-y-8 opacity-0'
+            }`}
+            style={{ transitionDelay: '400ms' }}>
+              <div className="w-2 h-2 bg-yb-beige rounded-full animate-pulse"></div>
+              <span className="text-yb-navy font-medium">Coming Soon</span>
+              <div className="w-2 h-2 bg-yb-beige rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+            </div>
+            
+            <div className={`mt-8 text-sm text-yb-navy-light transform transition-all duration-1000 ease-out ${
+              industryAnimation.isVisible 
+                ? 'translate-y-0 opacity-100' 
+                : 'translate-y-8 opacity-0'
+            }`}
+            style={{ transitionDelay: '600ms' }}>
+              In the meantime, discover how our proven process creates competitive advantages in our <a href="/our-process" className="text-yb-beige underline hover:text-yb-beige-light transition-colors">detailed methodology</a>.
+            </div>
           </div>
         </Container>
       </Section>
