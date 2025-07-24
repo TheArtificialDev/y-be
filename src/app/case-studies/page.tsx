@@ -95,7 +95,7 @@ function useIntersectionObserver() {
 }
 
 export default function CaseStudies() {
-  const [activeIndustry, setActiveIndustry] = useState('all')
+  const [activeTab, setActiveTab] = useState('case-studies')
   
   // Hero animation state (sequential animation)
   const [heroAnimationState, setHeroAnimationState] = useState({
@@ -136,80 +136,50 @@ export default function CaseStudies() {
     sequence()
   }, [])
 
-  const caseStudies = [
+  // Demo sites data organized by category
+  const demoSites = [
     {
-      id: 1,
-      client: "TechFlow Solutions",
-      industry: "saas",
-      challenge: "Falling behind top 3 competitors in organic search and conversions",
-      solution: "Complete competitive analysis and strategic repositioning",
-      results: {
-        traffic: "+213%",
-        conversions: "+156%",
-        leads: "+89%",
-        timeframe: "6 months"
-      },
-      quote: "Y-Be didn't just build us a website - they engineered our competitive advantage. Within 6 months we were outperforming our top 3 competitors in every metric that matters.",
-      author: "Sarah Mitchell, CEO"
+      category: "Landscape & Nature",
+      sites: [
+        { name: "Landscape Portfolio 1", url: "https://landscape-1.y-be.tech", description: "Professional landscape photography showcase" },
+        { name: "Landscape Portfolio 2", url: "https://landscape-2.y-be.tech", description: "Nature and outdoor photography gallery" },
+        { name: "Landscape Portfolio 3", url: "https://landscape-3.y-be.tech", description: "Scenic landscape photography collection" },
+        { name: "Landscape Portfolio 4", url: "https://landscape-4.y-be.tech", description: "Premium landscape photography site" }
+      ]
     },
     {
-      id: 2,
-      client: "Legal Partners Group",
-      industry: "legal",
-      challenge: "Generic website that looked like every other law firm",
-      solution: "Data-driven differentiation and premium positioning",
-      results: {
-        traffic: "+178%",
-        conversions: "+234%",
-        leads: "+145%",
-        timeframe: "4 months"
-      },
-      quote: "Our new website positions us as the premium choice in our market. We're now getting higher-quality leads and can charge premium rates.",
-      author: "Marcus Thompson, Managing Partner"
+      category: "Automotive",
+      sites: [
+        { name: "Car Showcase 1", url: "https://car-1.y-be.tech", description: "Luxury automotive photography portfolio" },
+        { name: "Car Showcase 2", url: "https://car-2.y-be.tech", description: "Professional car photography gallery" },
+        { name: "Car Showcase 3", url: "https://car-3.y-be.tech", description: "Automotive photography collection" },
+        { name: "Car Showcase 4", url: "https://car-4.y-be.tech", description: "Premium car photography showcase" }
+      ]
     },
     {
-      id: 3,
-      client: "E-Commerce Plus",
-      industry: "ecommerce",
-      challenge: "Poor conversion rates and high cart abandonment",
-      solution: "UX optimization based on competitor analysis",
-      results: {
-        traffic: "+134%",
-        conversions: "+289%",
-        leads: "+201%",
-        timeframe: "5 months"
-      },
-      quote: "The competitive analysis revealed exactly what we were missing. Our conversion rate nearly tripled after implementing Y-Be's recommendations.",
-      author: "Lisa Chen, Founder"
+      category: "Interior Design",
+      sites: [
+        { name: "Interior Design 1", url: "https://interior-design-1.y-be.tech", description: "Modern interior design portfolio" },
+        { name: "Interior Design 2", url: "https://interior-design-2.y-be.tech", description: "Contemporary interior showcase" },
+        { name: "Interior Design 3", url: "https://interior-design-3.y-be.tech", description: "Luxury interior design gallery" },
+        { name: "Interior Design 4", url: "https://interior-design-4.y-be.tech", description: "Premium interior design collection" }
+      ]
     },
     {
-      id: 4,
-      client: "Executive Coaching Pro",
-      industry: "coaching",
-      challenge: "Invisible online presence in a crowded market",
-      solution: "Strategic content and SEO competitive advantage",
-      results: {
-        traffic: "+267%",
-        conversions: "+198%",
-        leads: "+156%",
-        timeframe: "3 months"
-      },
-      quote: "Y-Be helped us dominate our niche. We went from page 3 to position 1 for our most valuable keywords.",
-      author: "David Rodriguez, Executive Coach"
+      category: "Corporate",
+      sites: [
+        { name: "Corporate 1", url: "https://incorp-1.y-be.tech", description: "Modern corporate website template" },
+        { name: "Corporate 2", url: "https://incorp-2.y-be.tech", description: "Professional business showcase" },
+        { name: "Corporate 3", url: "https://incorp-3.y-be.tech", description: "Enterprise-level corporate site" }
+      ]
+    },
+    {
+      category: "Travel & Lifestyle",
+      sites: [
+        { name: "Travel Portfolio", url: "https://travels-1.y-be.tech", description: "Travel photography and lifestyle blog" }
+      ]
     }
   ]
-
-  const industries = [
-    { id: 'all', name: 'All Industries', icon: '🏢' },
-    { id: 'saas', name: 'SaaS', icon: '💻' },
-    { id: 'legal', name: 'Legal', icon: '⚖️' },
-    { id: 'ecommerce', name: 'E-Commerce', icon: '🛒' },
-    { id: 'coaching', name: 'Coaching', icon: '🎯' }
-  ]
-
-  const filteredCaseStudies = activeIndustry === 'all' 
-    ? caseStudies 
-    : caseStudies.filter(study => study.industry === activeIndustry)
 
   return (
     <div>
@@ -326,319 +296,436 @@ export default function CaseStudies() {
         </Container>
       </Section>
 
-      {/* Industry Expertise Showcase */}
-      <Section background="white" padding="xl">
+      {/* Tab Navigation */}
+      <Section background="white" padding="md">
         <Container>
-          <div 
-            ref={industryAnimation.ref}
-            className={`text-center square-box-beige p-12 transform transition-all duration-1000 ease-out ${
-              industryAnimation.isVisible 
-                ? 'translate-y-0 opacity-100 scale-100' 
-                : 'translate-y-12 opacity-0 scale-95'
-            }`}
-          >
-            <div className={`mb-8 transform transition-all duration-1000 ease-out ${
-              industryAnimation.isVisible 
-                ? 'translate-y-0 opacity-100' 
-                : 'translate-y-8 opacity-0'
-            }`}
-            style={{ transitionDelay: '200ms' }}>
-              <div className="w-20 h-20 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-3xl">✨</span>
-              </div>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-6">
-                Industry Deep Dives
-              </h2>
-              <p className="text-lg text-yb-navy-light max-w-2xl mx-auto mb-8 leading-relaxed">
-                We&apos;re crafting detailed industry-specific case studies that showcase our strategic approach across different markets. Each deep dive will reveal the unique competitive advantages we&apos;ve engineered for businesses in various sectors.
-              </p>
-            </div>
-            
-            <div className={`inline-flex items-center gap-3 bg-yb-navy bg-opacity-5 px-6 py-3 rounded-full transform transition-all duration-1000 ease-out ${
-              industryAnimation.isVisible 
-                ? 'translate-y-0 opacity-100' 
-                : 'translate-y-8 opacity-0'
-            }`}
-            style={{ transitionDelay: '400ms' }}>
-              <div className="w-2 h-2 bg-yb-beige rounded-full animate-pulse"></div>
-              <span className="text-yb-navy font-medium">Coming Soon</span>
-              <div className="w-2 h-2 bg-yb-beige rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-            </div>
-            
-            <div className={`mt-8 text-sm text-yb-navy-light transform transition-all duration-1000 ease-out ${
-              industryAnimation.isVisible 
-                ? 'translate-y-0 opacity-100' 
-                : 'translate-y-8 opacity-0'
-            }`}
-            style={{ transitionDelay: '600ms' }}>
-              In the meantime, discover how our proven process creates competitive advantages in our <a href="/our-process" className="text-yb-beige underline hover:text-yb-beige-light transition-colors">detailed methodology</a>.
+          <div className="flex justify-center mb-8">
+            <div className="inline-flex bg-yb-navy bg-opacity-5 rounded-lg p-1">
+              <button
+                onClick={() => setActiveTab('case-studies')}
+                className={`px-6 py-3 rounded-md font-medium transition-all duration-300 ${
+                  activeTab === 'case-studies'
+                    ? 'bg-yb-navy text-yb-white shadow-md'
+                    : 'text-yb-navy hover:text-yb-beige'
+                }`}
+              >
+                Case Studies
+              </button>
+              <button
+                onClick={() => setActiveTab('demos')}
+                className={`px-6 py-3 rounded-md font-medium transition-all duration-300 ${
+                  activeTab === 'demos'
+                    ? 'bg-yb-navy text-yb-white shadow-md'
+                    : 'text-yb-navy hover:text-yb-beige'
+                }`}
+              >
+                Demo Sites
+              </button>
             </div>
           </div>
         </Container>
       </Section>
 
-      {/* Before/After Transformations */}
-      <Section background="beige" padding="xl">
-        <Container>
-          <div 
-            ref={transformationAnimation.ref}
-            className={`text-center mb-16 square-box-beige p-8 transform transition-all duration-1000 ease-out ${
-              transformationAnimation.isVisible 
-                ? 'translate-y-0 opacity-100 scale-100' 
-                : transformationAnimation.hasLeft 
-                ? 'translate-y-8 opacity-0 scale-95' 
-                : 'translate-y-12 opacity-0 scale-95'
-            }`}
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
-              Before/After Transformations
-            </h2>
-            <p className="text-lg text-yb-navy-light max-w-2xl mx-auto">
-              See the dramatic improvements our strategic approach delivers across key performance metrics.
-            </p>
-          </div>
-
-          <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 transform transition-all duration-1000 ease-out delay-300 ${
-            transformationAnimation.isVisible 
-              ? 'translate-y-0 opacity-100' 
-              : transformationAnimation.hasLeft 
-              ? 'translate-y-8 opacity-0' 
-              : 'translate-y-12 opacity-0'
-          }`}>
-            <Card className={`p-6 square-box-beige transform transition-all duration-1000 ease-out ${
-              transformationAnimation.isVisible 
-                ? 'translate-y-0 opacity-100 scale-100' 
-                : transformationAnimation.hasLeft 
-                ? 'translate-y-8 opacity-0 scale-95' 
-                : 'translate-y-12 opacity-0 scale-95'
-            }`} style={{ transitionDelay: '500ms' }}>
-              <h3 className="font-heading text-lg font-semibold text-yb-beige mb-4">Performance Metrics</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-yb-beige-light text-sm">Page Load Speed</span>
-                  <div className="text-right">
-                    <div className="text-red-400 text-sm line-through">4.2s</div>
-                    <div className="text-green-400 text-sm font-medium">1.8s</div>
+      {/* Tab Content */}
+      {activeTab === 'case-studies' && (
+        <>
+          {/* Industry Expertise Showcase */}
+          <Section background="white" padding="xl">
+            <Container>
+              <div 
+                ref={industryAnimation.ref}
+                className={`text-center square-box-beige p-12 transform transition-all duration-1000 ease-out ${
+                  industryAnimation.isVisible 
+                    ? 'translate-y-0 opacity-100 scale-100' 
+                    : 'translate-y-12 opacity-0 scale-95'
+                }`}
+              >
+                <div className={`mb-8 transform transition-all duration-1000 ease-out ${
+                  industryAnimation.isVisible 
+                    ? 'translate-y-0 opacity-100' 
+                    : 'translate-y-8 opacity-0'
+                }`}
+                style={{ transitionDelay: '200ms' }}>
+                  <div className="w-20 h-20 bg-yb-beige rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-3xl">✨</span>
                   </div>
+                  <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-6">
+                    Industry Deep Dives
+                  </h2>
+                  <p className="text-lg text-yb-navy-light max-w-2xl mx-auto mb-8 leading-relaxed">
+                    We&apos;re crafting detailed industry-specific case studies that showcase our strategic approach across different markets. Each deep dive will reveal the unique competitive advantages we&apos;ve engineered for businesses in various sectors.
+                  </p>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-yb-beige-light text-sm">Bounce Rate</span>
-                  <div className="text-right">
-                    <div className="text-red-400 text-sm line-through">67%</div>
-                    <div className="text-green-400 text-sm font-medium">23%</div>
-                  </div>
+                
+                <div className={`inline-flex items-center gap-3 bg-yb-navy bg-opacity-5 px-6 py-3 rounded-full transform transition-all duration-1000 ease-out ${
+                  industryAnimation.isVisible 
+                    ? 'translate-y-0 opacity-100' 
+                    : 'translate-y-8 opacity-0'
+                }`}
+                style={{ transitionDelay: '400ms' }}>
+                  <div className="w-2 h-2 bg-yb-beige rounded-full animate-pulse"></div>
+                  <span className="text-yb-navy font-medium">Coming Soon</span>
+                  <div className="w-2 h-2 bg-yb-beige rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-yb-beige-light text-sm">Conversion Rate</span>
-                  <div className="text-right">
-                    <div className="text-red-400 text-sm line-through">1.2%</div>
-                    <div className="text-green-400 text-sm font-medium">3.8%</div>
-                  </div>
+                
+                <div className={`mt-8 text-sm text-yb-navy-light transform transition-all duration-1000 ease-out ${
+                  industryAnimation.isVisible 
+                    ? 'translate-y-0 opacity-100' 
+                    : 'translate-y-8 opacity-0'
+                }`}
+                style={{ transitionDelay: '600ms' }}>
+                  In the meantime, discover how our proven process creates competitive advantages in our <a href="/our-process" className="text-yb-beige underline hover:text-yb-beige-light transition-colors">detailed methodology</a>.
                 </div>
               </div>
-            </Card>
+            </Container>
+          </Section>
 
-            <Card className={`p-6 square-box-beige transform transition-all duration-1000 ease-out ${
-              transformationAnimation.isVisible 
-                ? 'translate-y-0 opacity-100 scale-100' 
-                : transformationAnimation.hasLeft 
-                ? 'translate-y-8 opacity-0 scale-95' 
-                : 'translate-y-12 opacity-0 scale-95'
-            }`} style={{ transitionDelay: '700ms' }}>
-              <h3 className="font-heading text-lg font-semibold text-yb-beige mb-4">Search Rankings</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-yb-beige-light text-sm">Primary Keywords</span>
-                  <div className="text-right">
-                    <div className="text-red-400 text-sm line-through">Page 3</div>
-                    <div className="text-green-400 text-sm font-medium">Position 1-3</div>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-yb-beige-light text-sm">Organic Traffic</span>
-                  <div className="text-right">
-                    <div className="text-red-400 text-sm line-through">2,100/mo</div>
-                    <div className="text-green-400 text-sm font-medium">8,400/mo</div>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-yb-beige-light text-sm">Domain Authority</span>
-                  <div className="text-right">
-                    <div className="text-red-400 text-sm line-through">DA 23</div>
-                    <div className="text-green-400 text-sm font-medium">DA 47</div>
-                  </div>
-                </div>
+          {/* Before/After Transformations */}
+          <Section background="beige" padding="xl">
+            <Container>
+              <div 
+                ref={transformationAnimation.ref}
+                className={`text-center mb-16 square-box-beige p-8 transform transition-all duration-1000 ease-out ${
+                  transformationAnimation.isVisible 
+                    ? 'translate-y-0 opacity-100 scale-100' 
+                    : transformationAnimation.hasLeft 
+                    ? 'translate-y-8 opacity-0 scale-95' 
+                    : 'translate-y-12 opacity-0 scale-95'
+                }`}
+              >
+                <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
+                  Before/After Transformations
+                </h2>
+                <p className="text-lg text-yb-navy-light max-w-2xl mx-auto">
+                  See the dramatic improvements our strategic approach delivers across key performance metrics.
+                </p>
               </div>
-            </Card>
 
-            <Card className={`p-6 square-box-beige transform transition-all duration-1000 ease-out ${
-              transformationAnimation.isVisible 
-                ? 'translate-y-0 opacity-100 scale-100' 
-                : transformationAnimation.hasLeft 
-                ? 'translate-y-8 opacity-0 scale-95' 
-                : 'translate-y-12 opacity-0 scale-95'
-            }`} style={{ transitionDelay: '900ms' }}>
-              <h3 className="font-heading text-lg font-semibold text-yb-beige mb-4">Business Impact</h3>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-yb-beige-light text-sm">Monthly Leads</span>
-                  <div className="text-right">
-                    <div className="text-red-400 text-sm line-through">47</div>
-                    <div className="text-green-400 text-sm font-medium">178</div>
+              <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 transform transition-all duration-1000 ease-out delay-300 ${
+                transformationAnimation.isVisible 
+                  ? 'translate-y-0 opacity-100' 
+                  : transformationAnimation.hasLeft 
+                  ? 'translate-y-8 opacity-0' 
+                  : 'translate-y-12 opacity-0'
+              }`}>
+                <Card className={`p-6 square-box-beige transform transition-all duration-1000 ease-out ${
+                  transformationAnimation.isVisible 
+                    ? 'translate-y-0 opacity-100 scale-100' 
+                    : transformationAnimation.hasLeft 
+                    ? 'translate-y-8 opacity-0 scale-95' 
+                    : 'translate-y-12 opacity-0 scale-95'
+                }`} style={{ transitionDelay: '500ms' }}>
+                  <h3 className="font-heading text-lg font-semibold text-yb-beige mb-4">Performance Metrics</h3>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-yb-beige-light text-sm">Page Load Speed</span>
+                      <div className="text-right">
+                        <div className="text-red-400 text-sm line-through">4.2s</div>
+                        <div className="text-green-400 text-sm font-medium">1.8s</div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-yb-beige-light text-sm">Bounce Rate</span>
+                      <div className="text-right">
+                        <div className="text-red-400 text-sm line-through">67%</div>
+                        <div className="text-green-400 text-sm font-medium">23%</div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-yb-beige-light text-sm">Conversion Rate</span>
+                      <div className="text-right">
+                        <div className="text-red-400 text-sm line-through">1.2%</div>
+                        <div className="text-green-400 text-sm font-medium">3.8%</div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-yb-beige-light text-sm">Avg. Deal Size</span>
-                  <div className="text-right">
-                    <div className="text-red-400 text-sm line-through">$3,200</div>
-                    <div className="text-green-400 text-sm font-medium">$5,800</div>
+                </Card>
+
+                <Card className={`p-6 square-box-beige transform transition-all duration-1000 ease-out ${
+                  transformationAnimation.isVisible 
+                    ? 'translate-y-0 opacity-100 scale-100' 
+                    : transformationAnimation.hasLeft 
+                    ? 'translate-y-8 opacity-0 scale-95' 
+                    : 'translate-y-12 opacity-0 scale-95'
+                }`} style={{ transitionDelay: '700ms' }}>
+                  <h3 className="font-heading text-lg font-semibold text-yb-beige mb-4">Search Rankings</h3>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-yb-beige-light text-sm">Primary Keywords</span>
+                      <div className="text-right">
+                        <div className="text-red-400 text-sm line-through">Page 3</div>
+                        <div className="text-green-400 text-sm font-medium">Position 1-3</div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-yb-beige-light text-sm">Organic Traffic</span>
+                      <div className="text-right">
+                        <div className="text-red-400 text-sm line-through">2,100/mo</div>
+                        <div className="text-green-400 text-sm font-medium">8,400/mo</div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-yb-beige-light text-sm">Domain Authority</span>
+                      <div className="text-right">
+                        <div className="text-red-400 text-sm line-through">DA 23</div>
+                        <div className="text-green-400 text-sm font-medium">DA 47</div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-yb-beige-light text-sm">Market Position</span>
-                  <div className="text-right">
-                    <div className="text-red-400 text-sm line-through">#8</div>
-                    <div className="text-green-400 text-sm font-medium">#2</div>
+                </Card>
+
+                <Card className={`p-6 square-box-beige transform transition-all duration-1000 ease-out ${
+                  transformationAnimation.isVisible 
+                    ? 'translate-y-0 opacity-100 scale-100' 
+                    : transformationAnimation.hasLeft 
+                    ? 'translate-y-8 opacity-0 scale-95' 
+                    : 'translate-y-12 opacity-0 scale-95'
+                }`} style={{ transitionDelay: '900ms' }}>
+                  <h3 className="font-heading text-lg font-semibold text-yb-beige mb-4">Business Impact</h3>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                      <span className="text-yb-beige-light text-sm">Monthly Leads</span>
+                      <div className="text-right">
+                        <div className="text-red-400 text-sm line-through">47</div>
+                        <div className="text-green-400 text-sm font-medium">178</div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-yb-beige-light text-sm">Avg. Deal Size</span>
+                      <div className="text-right">
+                        <div className="text-red-400 text-sm line-through">$3,200</div>
+                        <div className="text-green-400 text-sm font-medium">$5,800</div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-yb-beige-light text-sm">Market Position</span>
+                      <div className="text-right">
+                        <div className="text-red-400 text-sm line-through">#8</div>
+                        <div className="text-green-400 text-sm font-medium">#2</div>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </Card>
               </div>
-            </Card>
-          </div>
-        </Container>
-      </Section>
+            </Container>
+          </Section>
 
-      {/* Client Testimonials */}
-      <Section background="white" padding="xl">
-        <Container>
-          <div 
-            ref={testimonialsAnimation.ref}
-            className={`text-center mb-16 square-box-beige p-8 transform transition-all duration-1000 ease-out ${
-              testimonialsAnimation.isVisible 
-                ? 'translate-y-0 opacity-100 scale-100' 
-                : testimonialsAnimation.hasLeft 
-                ? 'translate-y-8 opacity-0 scale-95' 
-                : 'translate-y-12 opacity-0 scale-95'
-            }`}
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
-              What Our Clients Say
-            </h2>
-            <p className="text-lg text-yb-navy-light max-w-2xl mx-auto">
-              Real feedback from businesses that chose strategic advantage over generic solutions.
-            </p>
-          </div>
-
-          <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 transform transition-all duration-1000 ease-out delay-300 ${
-            testimonialsAnimation.isVisible 
-              ? 'translate-y-0 opacity-100' 
-              : testimonialsAnimation.hasLeft 
-              ? 'translate-y-8 opacity-0' 
-              : 'translate-y-12 opacity-0'
-          }`}>
-            <Card className={`p-8 bg-yb-beige bg-opacity-20 square-box-beige transform transition-all duration-1000 ease-out ${
-              testimonialsAnimation.isVisible 
-                ? 'translate-y-0 opacity-100 scale-100' 
-                : testimonialsAnimation.hasLeft 
-                ? 'translate-y-8 opacity-0 scale-95' 
-                : 'translate-y-12 opacity-0 scale-95'
-            }`} style={{ transitionDelay: '500ms' }}>
-              <div className="text-4xl text-yb-beige mb-4">&ldquo;</div>
-              <p className="text-yb-navy mb-6 italic">
-                &ldquo;The competitive analysis was eye-opening. We had no idea how much we were falling behind until Y-Be showed us exactly where our competitors were winning. The strategic roadmap they provided became our blueprint for dominating our market.&rdquo;
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-yb-navy rounded-full flex items-center justify-center mr-4">
-                  <span className="text-yb-beige font-bold">SM</span>
-                </div>
-                <div>
-                  <div className="text-yb-navy font-semibold">Sarah Mitchell</div>
-                  <div className="text-yb-navy-light text-sm">CEO, TechFlow Solutions</div>
-                </div>
+          {/* Client Testimonials */}
+          <Section background="white" padding="xl">
+            <Container>
+              <div 
+                ref={testimonialsAnimation.ref}
+                className={`text-center mb-16 square-box-beige p-8 transform transition-all duration-1000 ease-out ${
+                  testimonialsAnimation.isVisible 
+                    ? 'translate-y-0 opacity-100 scale-100' 
+                    : testimonialsAnimation.hasLeft 
+                    ? 'translate-y-8 opacity-0 scale-95' 
+                    : 'translate-y-12 opacity-0 scale-95'
+                }`}
+              >
+                <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
+                  What Our Clients Say
+                </h2>
+                <p className="text-lg text-yb-navy-light max-w-2xl mx-auto">
+                  Real feedback from businesses that chose strategic advantage over generic solutions.
+                </p>
               </div>
-            </Card>
 
-            <Card className={`p-8 bg-yb-beige bg-opacity-20 square-box-beige transform transition-all duration-1000 ease-out ${
-              testimonialsAnimation.isVisible 
-                ? 'translate-y-0 opacity-100 scale-100' 
-                : testimonialsAnimation.hasLeft 
-                ? 'translate-y-8 opacity-0 scale-95' 
-                : 'translate-y-12 opacity-0 scale-95'
-            }`} style={{ transitionDelay: '700ms' }}>
-              <div className="text-4xl text-yb-beige mb-4">&ldquo;</div>
-              <p className="text-yb-navy mb-6 italic">
-                &ldquo;Y-Be didn&apos;t just build us a website - they engineered our competitive advantage. Our ROI from their work exceeded our expectations by 340%. We&apos;re now the go-to choice in our industry.&rdquo;
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-yb-navy rounded-full flex items-center justify-center mr-4">
-                  <span className="text-yb-beige font-bold">MT</span>
-                </div>
-                <div>
-                  <div className="text-yb-navy font-semibold">Marcus Thompson</div>
-                  <div className="text-yb-navy-light text-sm">Managing Partner, Legal Partners Group</div>
-                </div>
+              <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 transform transition-all duration-1000 ease-out delay-300 ${
+                testimonialsAnimation.isVisible 
+                  ? 'translate-y-0 opacity-100' 
+                  : testimonialsAnimation.hasLeft 
+                  ? 'translate-y-8 opacity-0' 
+                  : 'translate-y-12 opacity-0'
+              }`}>
+                <Card className={`p-8 bg-yb-beige bg-opacity-20 square-box-beige transform transition-all duration-1000 ease-out ${
+                  testimonialsAnimation.isVisible 
+                    ? 'translate-y-0 opacity-100 scale-100' 
+                    : testimonialsAnimation.hasLeft 
+                    ? 'translate-y-8 opacity-0 scale-95' 
+                    : 'translate-y-12 opacity-0 scale-95'
+                }`} style={{ transitionDelay: '500ms' }}>
+                  <div className="text-4xl text-yb-beige mb-4">&ldquo;</div>
+                  <p className="text-yb-navy mb-6 italic">
+                    &ldquo;The competitive analysis was eye-opening. We had no idea how much we were falling behind until Y-Be showed us exactly where our competitors were winning. The strategic roadmap they provided became our blueprint for dominating our market.&rdquo;
+                  </p>
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-yb-navy rounded-full flex items-center justify-center mr-4">
+                      <span className="text-yb-beige font-bold">SM</span>
+                    </div>
+                    <div>
+                      <div className="text-yb-navy font-semibold">Sarah Mitchell</div>
+                      <div className="text-yb-navy-light text-sm">CEO, TechFlow Solutions</div>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className={`p-8 bg-yb-beige bg-opacity-20 square-box-beige transform transition-all duration-1000 ease-out ${
+                  testimonialsAnimation.isVisible 
+                    ? 'translate-y-0 opacity-100 scale-100' 
+                    : testimonialsAnimation.hasLeft 
+                    ? 'translate-y-8 opacity-0 scale-95' 
+                    : 'translate-y-12 opacity-0 scale-95'
+                }`} style={{ transitionDelay: '700ms' }}>
+                  <div className="text-4xl text-yb-beige mb-4">&ldquo;</div>
+                  <p className="text-yb-navy mb-6 italic">
+                    &ldquo;Y-Be didn&apos;t just build us a website - they engineered our competitive advantage. Our ROI from their work exceeded our expectations by 340%. We&apos;re now the go-to choice in our industry.&rdquo;
+                  </p>
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 bg-yb-navy rounded-full flex items-center justify-center mr-4">
+                      <span className="text-yb-beige font-bold">MT</span>
+                    </div>
+                    <div>
+                      <div className="text-yb-navy font-semibold">Marcus Thompson</div>
+                      <div className="text-yb-navy-light text-sm">Managing Partner, Legal Partners Group</div>
+                    </div>
+                  </div>
+                </Card>
               </div>
-            </Card>
-          </div>
-        </Container>
-      </Section>
+            </Container>
+          </Section>
 
-      {/* Results Gallery */}
-      <Section background="beige" padding="xl">
-        <Container>
-          <div 
-            ref={resultsAnimation.ref}
-            className={`text-center mb-16 transform transition-all duration-1000 ease-out ${
-              resultsAnimation.isVisible 
-                ? 'translate-y-0 opacity-100 scale-100' 
-                : resultsAnimation.hasLeft 
-                ? 'translate-y-8 opacity-0 scale-95' 
-                : 'translate-y-12 opacity-0 scale-95'
-            }`}
-          >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
-              Results Gallery
-            </h2>
-            <p className="text-lg text-yb-navy-light max-w-2xl mx-auto">
-              A quick overview of the competitive advantages we&apos;ve engineered for our clients.
-            </p>
-          </div>
+          {/* Results Gallery */}
+          <Section background="beige" padding="xl">
+            <Container>
+              <div 
+                ref={resultsAnimation.ref}
+                className={`text-center mb-16 transform transition-all duration-1000 ease-out ${
+                  resultsAnimation.isVisible 
+                    ? 'translate-y-0 opacity-100 scale-100' 
+                    : resultsAnimation.hasLeft 
+                    ? 'translate-y-8 opacity-0 scale-95' 
+                    : 'translate-y-12 opacity-0 scale-95'
+                }`}
+              >
+                <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4">
+                  Results Gallery
+                </h2>
+                <p className="text-lg text-yb-navy-light max-w-2xl mx-auto">
+                  A quick overview of the competitive advantages we&apos;ve engineered for our clients.
+                </p>
+              </div>
 
-          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transform transition-all duration-1000 ease-out delay-300 ${
-            resultsAnimation.isVisible 
-              ? 'translate-y-0 opacity-100' 
-              : resultsAnimation.hasLeft 
-              ? 'translate-y-8 opacity-0' 
-              : 'translate-y-12 opacity-0'
-          }`}>
-            {[
-              { metric: "+289%", detail: "Conversion Rate", industry: "E-Commerce" },
-              { metric: "+213%", detail: "Organic Traffic", industry: "SaaS" },
-              { metric: "+178%", detail: "Lead Generation", industry: "Legal" },
-              { metric: "+234%", detail: "ROI Improvement", industry: "Coaching" },
-              { metric: "4.2x", detail: "Market Share", industry: "Professional Services" },
-              { metric: "+156%", detail: "Brand Authority", industry: "Healthcare" }
-            ].map((result, index) => (
-              <Card key={index} className={`p-6 hover:shadow-lg transition-all duration-300 group square-box transform ${
+              <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transform transition-all duration-1000 ease-out delay-300 ${
                 resultsAnimation.isVisible 
-                  ? 'translate-y-0 opacity-100 scale-100' 
+                  ? 'translate-y-0 opacity-100' 
                   : resultsAnimation.hasLeft 
-                  ? 'translate-y-8 opacity-0 scale-95' 
-                  : 'translate-y-12 opacity-0 scale-95'
-              }`} style={{ transitionDelay: `${500 + index * 100}ms` }}>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-yb-beige mb-2 group-hover:text-yb-beige-light transition-colors">
-                    {result.metric}
-                  </div>
-                  <div className="text-yb-beige-light text-sm mb-2">{result.detail}</div>
-                  <div className="text-xs text-yb-navy bg-yb-beige bg-opacity-80 px-2 py-1 rounded-full">
-                    {result.industry}
+                  ? 'translate-y-8 opacity-0' 
+                  : 'translate-y-12 opacity-0'
+              }`}>
+                {[
+                  { metric: "+289%", detail: "Conversion Rate", industry: "E-Commerce" },
+                  { metric: "+213%", detail: "Organic Traffic", industry: "SaaS" },
+                  { metric: "+178%", detail: "Lead Generation", industry: "Legal" },
+                  { metric: "+234%", detail: "ROI Improvement", industry: "Coaching" },
+                  { metric: "4.2x", detail: "Market Share", industry: "Professional Services" },
+                  { metric: "+156%", detail: "Brand Authority", industry: "Healthcare" }
+                ].map((result, index) => (
+                  <Card key={index} className={`p-6 hover:shadow-lg transition-all duration-300 group square-box transform ${
+                    resultsAnimation.isVisible 
+                      ? 'translate-y-0 opacity-100 scale-100' 
+                      : resultsAnimation.hasLeft 
+                      ? 'translate-y-8 opacity-0 scale-95' 
+                      : 'translate-y-12 opacity-0 scale-95'
+                  }`} style={{ transitionDelay: `${500 + index * 100}ms` }}>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-yb-beige mb-2 group-hover:text-yb-beige-light transition-colors">
+                        {result.metric}
+                      </div>
+                      <div className="text-yb-beige-light text-sm mb-2">{result.detail}</div>
+                      <div className="text-xs text-yb-navy bg-yb-beige bg-opacity-80 px-2 py-1 rounded-full">
+                        {result.industry}
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </Container>
+          </Section>
+        </>
+      )}
+
+      {/* Demo Sites Tab Content */}
+      {activeTab === 'demos' && (
+        <Section background="white" padding="xl">
+          <Container>
+            <div className="text-center mb-16">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-6">
+                Live Demo Sites
+              </h2>
+              <p className="text-lg text-yb-navy-light max-w-3xl mx-auto leading-relaxed">
+                Explore our collection of live demonstration websites showcasing various industries and design approaches. 
+                Each site demonstrates our commitment to high-quality, responsive design and user experience.
+              </p>
+            </div>
+
+            <div className="space-y-12">
+              {demoSites.map((category, categoryIndex) => (
+                <div key={categoryIndex} className="space-y-6">
+                  <h3 className="font-heading text-2xl font-bold text-yb-navy border-b border-yb-beige pb-2">
+                    {category.category}
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {category.sites.map((site, siteIndex) => (
+                      <a
+                        key={siteIndex}
+                        href={site.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105 square-box cursor-pointer">
+                          <div className="p-6">
+                            <div className="flex items-center justify-between mb-4">
+                              <h4 className="font-heading text-lg font-semibold text-yb-navy group-hover:text-yb-beige transition-colors">
+                                {site.name}
+                              </h4>
+                              <div className="text-yb-beige group-hover:text-yb-navy transition-colors">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                              </div>
+                            </div>
+                            <p className="text-yb-navy-light text-sm mb-4 leading-relaxed">
+                              {site.description}
+                            </p>
+                            <div className="space-y-3">
+                              <div className="w-full text-center bg-yb-navy text-yb-white py-2 px-4 rounded-md group-hover:bg-yb-beige group-hover:text-yb-navy transition-all duration-300 font-medium">
+                                Visit Live Site
+                              </div>
+                              <div className="text-xs text-yb-navy-light bg-yb-beige bg-opacity-20 px-3 py-1 rounded-full text-center">
+                                {site.url.replace('https://', '')}
+                              </div>
+                            </div>
+                          </div>
+                        </Card>
+                      </a>
+                    ))}
                   </div>
                 </div>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </Section>
+              ))}
+            </div>
+
+            <div className="mt-16 text-center bg-yb-beige bg-opacity-10 rounded-lg p-8">
+              <h3 className="font-heading text-xl font-bold text-yb-navy mb-4">
+                Ready to Build Your Own?
+              </h3>
+              <p className="text-yb-navy-light mb-6 max-w-2xl mx-auto">
+                These demo sites showcase our capabilities across different industries. 
+                Ready to create something amazing for your business?
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button href="/getting-started" variant="primary" size="lg">
+                  Start Your Project
+                </Button>
+                <Button href="/our-process" variant="outline" size="lg" className="border-yb-navy text-yb-navy hover:bg-yb-navy hover:text-yb-white">
+                  Learn Our Process
+                </Button>
+              </div>
+            </div>
+          </Container>
+        </Section>
+      )}
 
       {/* Success Story CTA */}
       <Section background="navy" padding="xl">
