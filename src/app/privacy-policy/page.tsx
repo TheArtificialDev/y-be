@@ -177,7 +177,7 @@ export default function PrivacyPolicy() {
 
             <Card className="p-8">
               <h2 className="font-heading text-2xl font-bold text-yb-navy mb-4">
-                Children's Privacy
+                Children&apos;s Privacy
               </h2>
               <div className="space-y-4 text-yb-navy-light">
                 <p>
@@ -192,7 +192,7 @@ export default function PrivacyPolicy() {
               </h2>
               <div className="space-y-4 text-yb-navy-light">
                 <p>
-                  We may update this privacy policy from time to time to reflect changes in our practices or applicable laws. We will notify you of any material changes by posting the updated policy on our website and updating the "Last updated" date at the top of this page.
+                  We may update this privacy policy from time to time to reflect changes in our practices or applicable laws. We will notify you of any material changes by posting the updated policy on our website and updating the &ldquo;Last updated&rdquo; date at the top of this page.
                 </p>
               </div>
             </Card>
