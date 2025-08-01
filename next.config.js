@@ -9,6 +9,11 @@ const nextConfig = {
     optimizePackageImports: ['@/components', '@/lib'],
   },
   
+  // Turbopack configuration (moved from experimental.turbo)
+  turbopack: {
+    // Add any Turbopack-specific configuration here
+  },
+  
   // Optimize images
   images: {
     formats: ['image/avif', 'image/webp'],
@@ -19,30 +24,32 @@ const nextConfig = {
   // Compression
   compress: true,
   
-  // Bundle optimization
-  webpack: (config, { isServer }) => {
-    // Optimize for production
-    if (!isServer) {
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        cacheGroups: {
-          default: {
-            minChunks: 2,
-            priority: -20,
-            reuseExistingChunk: true,
+  // Bundle optimization - only apply webpack config in production
+  ...(!process.env.NODE_ENV || process.env.NODE_ENV === 'production' ? {
+    webpack: (config, { isServer }) => {
+      // Optimize for production
+      if (!isServer) {
+        config.optimization.splitChunks = {
+          chunks: 'all',
+          cacheGroups: {
+            default: {
+              minChunks: 2,
+              priority: -20,
+              reuseExistingChunk: true,
+            },
+            vendor: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              priority: -10,
+              chunks: 'all',
+            },
           },
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            priority: -10,
-            chunks: 'all',
-          },
-        },
+        }
       }
-    }
-    
-    return config
-  },
+      
+      return config
+    },
+  } : {}),
   
   // Headers for performance
   async headers() {

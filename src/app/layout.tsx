@@ -40,15 +40,38 @@ export const metadata: Metadata = {
   publisher: "Y-Be",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://ybe.studio'),
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
+    ],
+    shortcut: '/favicon.ico',
     apple: '/apple-touch-icon.png',
+    other: [
+      {
+        rel: 'apple-touch-icon-precomposed',
+        url: '/apple-touch-icon.png',
+      },
+      {
+        rel: 'mask-icon',
+        url: '/logo.png',
+        color: '#D9BBA4',
+      },
+    ],
   },
   openGraph: {
     title: "Y-Be | Engineering Competitive Advantages",
     description: "We don&apos;t just build websites, we engineer competitive advantages through data-driven web solutions.",
     url: "/",
     siteName: "Y-Be",
+    images: [
+      {
+        url: '/logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Y-Be Logo',
+      }
+    ],
     locale: "en_US",
     type: "website",
   },
@@ -57,6 +80,7 @@ export const metadata: Metadata = {
     title: "Y-Be | Engineering Competitive Advantages",
     description: "We don&apos;t just build websites, we engineer competitive advantages through data-driven web solutions.",
     creator: "@ybestudio",
+    images: ['/logo.png'],
   },
   robots: {
     index: true,
@@ -72,6 +96,7 @@ export const metadata: Metadata = {
   verification: {
     google: "verification_token_here",
   },
+  manifest: '/manifest.json',
 };
 
 export default function RootLayout({
@@ -80,7 +105,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#D9BBA4" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Y-Be" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-TileColor" content="#0F1419" />
+        <meta name="msapplication-TileImage" content="/logo.png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${inter.variable} antialiased dark-theme text-yb-beige`}
       >

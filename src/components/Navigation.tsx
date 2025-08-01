@@ -29,7 +29,7 @@ export default function Navigation() {
                 height={32}
                 className="h-8 w-auto"
               />
-              <span className="ml-3 text-sm text-yb-beige hidden sm:block">
+              <span className="ml-3 text-base text-yb-beige hidden sm:block">
                 Engineering Competitive Advantages
               </span>
             </Link>
@@ -41,7 +41,7 @@ export default function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+                className={`px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ${
                   pathname === item.href
                     ? 'text-yb-navy bg-yb-beige border-b-2 border-yb-beige'
                     : 'text-yb-beige hover:text-yb-beige hover:bg-yb-navy-light'
@@ -93,7 +93,7 @@ export default function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                className={`block px-3 py-2 rounded-md text-lg font-medium transition-colors ${
                   pathname === item.href
                     ? 'text-yb-navy bg-yb-beige'
                     : 'text-yb-beige hover:text-yb-beige hover:bg-yb-navy-light'

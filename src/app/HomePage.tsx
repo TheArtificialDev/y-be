@@ -122,7 +122,7 @@ export default function HomePage() {
           <Container>
             <div className="relative z-10">
               <div className="relative z-10 text-center lg:text-left lg:max-w-4xl">
-                <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold text-yb-beige mb-6 hero-premium-shadow">
+                <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-yb-beige mb-6 hero-premium-shadow">
                   {/* First 5 words that drop down */}
                   <span className="inline-block">
                     {['We', 'don\'t', 'just', 'build', 'websites,'].map((word, index) => (
@@ -163,7 +163,7 @@ export default function HomePage() {
                 </h1>
                 
                 {/* Subtitle that slides in from right */}
-                <p className={`text-xl text-yb-beige/80 max-w-3xl mx-auto lg:mx-0 mb-8 leading-relaxed premium-transition-slow ${
+                <p className={`text-2xl text-yb-beige/80 max-w-3xl mx-auto lg:mx-0 mb-8 leading-relaxed premium-transition-slow ${
                   animationState.subtitle 
                     ? 'opacity-100 translate-x-0' 
                     : 'opacity-0 translate-x-12'
@@ -204,14 +204,14 @@ export default function HomePage() {
         <DecorativeWrapper>
           <Container>
             <div ref={gapTitleRef} className="text-center mb-16">
-              <h2 className={`font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4 bidirectional-title-drop ${
+              <h2 className={`font-heading text-4xl md:text-5xl font-bold text-yb-navy mb-4 bidirectional-title-drop ${
                 isGapTitleVisible 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-8'
               }`}>
                 The Gap Between Generic Solutions and Strategic Advantage
               </h2>
-              <p className={`text-lg text-yb-navy/80 max-w-2xl mx-auto bidirectional-title-drop ${
+              <p className={`text-xl text-yb-navy/80 max-w-2xl mx-auto bidirectional-title-drop ${
                 isGapTitleVisible 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 translate-y-8'
@@ -234,7 +234,7 @@ export default function HomePage() {
                   : 'translateX(-64px) scale(0.95)'
               }}>
                 {/* ...existing card content... */}
-                <h3 className="font-heading text-2xl font-bold text-yb-navy/70 mb-6">Generic Solutions</h3>
+                <h3 className="font-heading text-3xl font-bold text-yb-navy/70 mb-6">Generic Solutions</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start space-x-3">
                     <span className="text-red-600 mt-1">✗</span>

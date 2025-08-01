@@ -135,7 +135,7 @@ export default function OurProcess() {
       <Section background="navy" padding="xl">
         <Container>
           <div className="text-center">
-            <h1 className={`font-heading text-4xl md:text-6xl font-bold text-yb-white mb-6 transition-all duration-1000 ease-out ${
+            <h1 className={`font-heading text-5xl md:text-7xl font-bold text-yb-white mb-6 transition-all duration-1000 ease-out ${
               heroAnimationState.title 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 -translate-y-12'
@@ -146,7 +146,7 @@ export default function OurProcess() {
               Our Proven Process = Your{' '}
               <span className="text-yb-beige">Competitive Edge</span>
             </h1>
-            <p className={`text-xl text-yb-beige-light max-w-3xl mx-auto mb-8 leading-relaxed transition-all duration-1000 ease-out ${
+            <p className={`text-2xl text-yb-beige-light max-w-3xl mx-auto mb-8 leading-relaxed transition-all duration-1000 ease-out ${
               heroAnimationState.subtitle 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 -translate-y-8'
@@ -185,7 +185,7 @@ export default function OurProcess() {
             transition: 'all 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             filter: isOverviewTitleVisible ? 'blur(0px)' : 'blur(1px)'
           }}>
-            <h2 className={`font-heading text-3xl md:text-4xl font-bold text-yb-navy mb-4 transition-all duration-1000 ease-out ${
+            <h2 className={`font-heading text-4xl md:text-5xl font-bold text-yb-navy mb-4 transition-all duration-1000 ease-out ${
               isOverviewTitleVisible 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 -translate-y-12'
@@ -196,7 +196,7 @@ export default function OurProcess() {
             }}>
               Research & Analysis Deep Dive
             </h2>
-            <p className={`text-lg text-yb-navy-light max-w-2xl mx-auto transition-all duration-1000 ease-out ${
+            <p className={`text-xl text-yb-navy-light max-w-2xl mx-auto transition-all duration-1000 ease-out ${
               isOverviewTitleVisible 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 -translate-y-8'

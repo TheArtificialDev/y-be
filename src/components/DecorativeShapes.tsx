@@ -10,10 +10,9 @@ export function FloatingBackground() {
     setIsClient(true)
   }, [])
 
-  if (!isClient) return null
-
+  // Always render the container, but control visibility with CSS
   return (
-    <div className="floating-background">
+    <div className={`floating-background ${!isClient ? 'opacity-0' : 'opacity-100'} transition-opacity duration-500`}>
       {/* Shapes moving in different directions - more transparent */}
       
       {/* Northeast moving shapes */}
