@@ -122,7 +122,7 @@ export default function HomePage() {
           <Container>
             <div className="relative z-10">
               <div className="relative z-10 text-center lg:text-left lg:max-w-4xl">
-                <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold text-yb-beige mb-6 hero-premium-shadow">
+                <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold text-yb-beige mb-6 hero-premium-shadow">
                   {/* First 5 words that drop down */}
                   <span className="inline-block">
                     {['We', 'don\'t', 'just', 'build', 'websites,'].map((word, index) => (
@@ -163,7 +163,7 @@ export default function HomePage() {
                 </h1>
                 
                 {/* Subtitle that slides in from right */}
-                <p className={`text-2xl text-yb-beige/80 max-w-3xl mx-auto lg:mx-0 mb-8 leading-relaxed premium-transition-slow ${
+                <p className={`text-xl text-yb-beige/80 max-w-3xl mx-auto lg:mx-0 mb-8 leading-relaxed premium-transition-slow ${
                   animationState.subtitle 
                     ? 'opacity-100 translate-x-0' 
                     : 'opacity-0 translate-x-12'
