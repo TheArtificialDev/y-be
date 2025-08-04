@@ -2,10 +2,13 @@ import { notFound } from 'next/navigation'
 import { promises as fs } from 'fs'
 import path from 'path'
 
+// Force dynamic rendering for demo pages
+export const dynamic = 'force-dynamic'
+
 interface DemoPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 // List of valid demo sites
@@ -28,14 +31,10 @@ const validDemoSites = [
   'travels_demo_site_1'
 ]
 
-export async function generateStaticParams() {
-  return validDemoSites.map((slug) => ({
-    slug: slug,
-  }))
-}
+// Remove generateStaticParams since we're going dynamic
 
 export default async function DemoPage({ params }: DemoPageProps) {
-  const { slug } = params
+  const { slug } = await params
   
   // Check if the demo site is valid
   if (!validDemoSites.includes(slug)) {
@@ -59,7 +58,7 @@ export default async function DemoPage({ params }: DemoPageProps) {
 
 // Generate metadata for each demo site
 export async function generateMetadata({ params }: DemoPageProps) {
-  const { slug } = params
+  const { slug } = await params
   
   if (!validDemoSites.includes(slug)) {
     return {

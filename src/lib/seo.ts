@@ -19,13 +19,13 @@ export function generateSEOMetadata({
   keywords = [],
   ogTitle,
   ogDescription,
-  ogImage = '/og-image.jpg',
+  ogImage = '/logo.png',
   ogType = 'website',
   canonicalUrl,
   noindex = false,
   structuredData,
 }: SEOProps): Metadata {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ybeagency.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://y-be.tech'
   
   const metadata: Metadata = {
     title,
@@ -45,7 +45,7 @@ export function generateSEOMetadata({
         },
       ],
       type: ogType,
-      siteName: 'Y-Be Agency',
+      siteName: 'Y-Be',
       locale: 'en_US',
     },
     
@@ -54,8 +54,8 @@ export function generateSEOMetadata({
       title: ogTitle || title,
       description: ogDescription || description,
       images: [ogImage.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`],
-      creator: '@ybeagency',
-      site: '@ybeagency',
+      creator: '@ybestudio',
+      site: '@ybestudio',
     },
     
     alternates: canonicalUrl ? {
@@ -77,35 +77,34 @@ export function generateSEOMetadata({
 export const createOrganizationSchema = (baseUrl: string) => ({
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Y-Be Agency',
+  name: 'Y-Be',
   alternateName: 'Your Business Engine',
   url: baseUrl,
   logo: `${baseUrl}/logo.png`,
-  description: 'Data-driven web development agency specializing in competitive analysis and performance optimization',
+  description: 'Engineering competitive advantages through data-driven web solutions, market intelligence, and digital transformation services',
   address: {
     '@type': 'PostalAddress',
     addressCountry: 'US',
   },
   contactPoint: {
     '@type': 'ContactPoint',
-    telephone: '+1-555-0123',
     contactType: 'customer service',
-    email: 'hello@ybeagency.com',
+    email: 'hello@y-be.tech',
   },
   sameAs: [
-    'https://linkedin.com/company/ybeagency',
-    'https://twitter.com/ybeagency',
-    'https://github.com/ybeagency',
+    'https://linkedin.com/company/y-be',
+    'https://twitter.com/ybestudio',
+    'https://github.com/TheArtificialDev',
   ],
 })
 
 export const createWebsiteSchema = (baseUrl: string) => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Y-Be Agency',
+  name: 'Y-Be',
   alternateName: 'Your Business Engine',
   url: baseUrl,
-  description: 'Data-driven web development agency specializing in competitive analysis and performance optimization',
+  description: 'Engineering competitive advantages through data-driven web solutions, market intelligence, and digital transformation services',
   potentialAction: {
     '@type': 'SearchAction',
     target: `${baseUrl}/search?q={search_term_string}`,
@@ -127,41 +126,57 @@ export const createBreadcrumbSchema = (items: Array<{ name: string; url: string 
 export const createServiceSchema = (baseUrl: string) => ({
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Web Development & Digital Strategy',
+  name: 'Web Development & Digital Transformation',
   provider: {
     '@type': 'Organization',
-    name: 'Y-Be Agency',
+    name: 'Y-Be',
     url: baseUrl,
   },
-  description: 'Comprehensive web development services including competitive analysis, performance optimization, and strategic digital solutions',
-  serviceType: 'Web Development',
+  description: 'Comprehensive digital services including web development, market intelligence, business intelligence, SaaS development, and digital transformation',
+  serviceType: 'Digital Services',
   areaServed: 'Worldwide',
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
-    name: 'Web Development Services',
+    name: 'Digital Services',
     itemListElement: [
       {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Competitive Analysis',
-          description: 'In-depth analysis of competitors to identify opportunities and advantages',
+          name: 'Web Development',
+          description: 'Custom web development solutions with modern technologies and performance optimization',
         },
       },
       {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Performance Optimization',
-          description: 'Website speed and performance optimization for better user experience',
+          name: 'Market Intelligence',
+          description: 'Strategic market analysis and competitive intelligence for data-driven decision making',
         },
       },
       {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Custom Web Development',
-          description: 'Tailored web solutions built with modern technologies and best practices',
+          name: 'Digital Transformation',
+          description: 'End-to-end digital transformation services to modernize business operations',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'SaaS Development',
+          description: 'Custom Software as a Service development and implementation',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Business Intelligence',
+          description: 'Data analytics and business intelligence solutions for informed decision making',
         },
       },
     ],

@@ -32,13 +32,32 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Y-Be | Engineering Competitive Advantages",
-  description: "We don&apos;t just build websites, we engineer competitive advantages through data-driven web solutions.",
-  keywords: ["web development", "competitive analysis", "SEO", "data-driven design", "website optimization"],
-  authors: [{ name: "Y-Be Team" }],
+  title: {
+    default: "Y-Be | Engineering Competitive Advantages",
+    template: "%s | Y-Be"
+  },
+  description: "We don't just build websites, we engineer competitive advantages through data-driven web solutions, market intelligence, and digital transformation services.",
+  keywords: [
+    "web development", 
+    "competitive analysis", 
+    "SEO optimization", 
+    "data-driven design", 
+    "website optimization",
+    "digital transformation",
+    "market intelligence", 
+    "business intelligence",
+    "SaaS development",
+    "industry research",
+    "y-be.tech",
+    "engineering competitive advantages"
+  ],
+  authors: [{ name: "Y-Be Team", url: "https://y-be.tech" }],
   creator: "Y-Be",
   publisher: "Y-Be",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://ybe.studio'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://y-be.tech'),
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -61,15 +80,15 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Y-Be | Engineering Competitive Advantages",
-    description: "We don&apos;t just build websites, we engineer competitive advantages through data-driven web solutions.",
-    url: "/",
+    description: "We don't just build websites, we engineer competitive advantages through data-driven web solutions, market intelligence, and digital transformation services.",
+    url: "https://y-be.tech",
     siteName: "Y-Be",
     images: [
       {
         url: '/logo.png',
         width: 1200,
         height: 630,
-        alt: 'Y-Be Logo',
+        alt: 'Y-Be - Engineering Competitive Advantages',
       }
     ],
     locale: "en_US",
@@ -77,8 +96,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@ybestudio",
     title: "Y-Be | Engineering Competitive Advantages",
-    description: "We don&apos;t just build websites, we engineer competitive advantages through data-driven web solutions.",
+    description: "We don't just build websites, we engineer competitive advantages through data-driven web solutions, market intelligence, and digital transformation services.",
     creator: "@ybestudio",
     images: ['/logo.png'],
   },
@@ -94,9 +114,19 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "verification_token_here",
+    google: "google-site-verification=your-verification-code-here",
   },
   manifest: '/manifest.json',
+  other: {
+    "geo.region": "US",
+    "geo.placename": "United States",
+    "author": "Y-Be Team",
+    "copyright": "Y-Be 2025",
+    "language": "en",
+    "revisit-after": "7 days",
+    "distribution": "global",
+    "rating": "general",
+  },
 };
 
 export default function RootLayout({
@@ -104,6 +134,32 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://y-be.tech'
+  
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Y-Be",
+    "alternateName": "Your Business Engine",
+    "url": baseUrl,
+    "logo": `${baseUrl}/logo.png`,
+    "description": "Engineering competitive advantages through data-driven web solutions, market intelligence, and digital transformation services",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "US"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "hello@y-be.tech"
+    },
+    "sameAs": [
+      "https://linkedin.com/company/y-be",
+      "https://twitter.com/ybestudio",
+      "https://github.com/TheArtificialDev"
+    ]
+  }
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -115,6 +171,12 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-TileColor" content="#0F1419" />
         <meta name="msapplication-TileImage" content="/logo.png" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${inter.variable} antialiased dark-theme text-yb-beige`}

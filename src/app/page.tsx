@@ -1,32 +1,34 @@
 import type { Metadata } from "next";
-import { generateSEOMetadata, createOrganizationSchema, createWebsiteSchema } from '@/lib/seo'
+import { generateSEOMetadata, createOrganizationSchema, createWebsiteSchema, createServiceSchema } from '@/lib/seo'
 import HomePage from './HomePage';
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ybeagency.com'
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://y-be.tech'
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Y-Be Agency - Data-Driven Web Development & Competitive Analysis',
-  description: 'We don\'t just build websites, we engineer competitive advantages. Get data-driven web solutions that position you ahead of the competition.',
+  title: 'Y-Be | Engineering Competitive Advantages',
+  description: 'We don\'t just build websites, we engineer competitive advantages through data-driven web solutions, market intelligence, and digital transformation services.',
   keywords: [
     'web development',
-    'competitive analysis',
-    'performance optimization',
-    'digital strategy',
-    'SEO',
-    'web design',
+    'competitive advantages',
+    'market intelligence',
     'business intelligence',
-    'data-driven development',
-    'conversion optimization',
-    'user experience'
+    'digital transformation',
+    'SaaS development',
+    'industry research',
+    'data-driven solutions',
+    'performance optimization',
+    'y-be.tech',
+    'engineering competitive advantages'
   ],
-  ogTitle: 'Y-Be Agency - Engineer Your Competitive Advantage',
-  ogDescription: 'Data-driven web development that powers innovation and growth. Discover how we analyze your competition and build solutions that win.',
+  ogTitle: 'Y-Be | Engineering Competitive Advantages',
+  ogDescription: 'Engineering competitive advantages through data-driven web solutions, market intelligence, and digital transformation services.',
   canonicalUrl: baseUrl,
   structuredData: {
     '@context': 'https://schema.org',
     '@graph': [
       createOrganizationSchema(baseUrl),
       createWebsiteSchema(baseUrl),
+      createServiceSchema(baseUrl),
     ],
   },
 })
