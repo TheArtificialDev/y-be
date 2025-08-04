@@ -6,6 +6,7 @@ import Container from '@/components/Container'
 import Card from '@/components/Card'
 import Button from '@/components/Button'
 import DecorativeWrapper from '@/components/DecorativeShapes'
+import { trackPageView } from '@/lib/analytics'
 
 // Custom hook for bi-directional intersection observer
 const useBidirectionalIntersectionObserver = (threshold = 0.1, rootMargin = '0px') => {
@@ -112,6 +113,11 @@ export default function HomePage() {
     }
     
     sequence()
+  }, [])
+
+  // Track page view
+  useEffect(() => {
+    trackPageView(window.location.href)
   }, [])
 
   return (

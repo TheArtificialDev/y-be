@@ -130,6 +130,9 @@ export default function RootLayout({
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
+        {!process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId="G-JGNZN346TF" />
+        )}
         <PerformanceMonitor />
       </body>
     </html>

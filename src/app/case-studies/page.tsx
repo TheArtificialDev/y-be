@@ -141,42 +141,42 @@ export default function CaseStudies() {
     {
       category: "Landscape & Nature",
       sites: [
-        { name: "Landscape Portfolio 1", url: "https://landscape-1.y-be.tech", description: "Professional landscape photography showcase" },
-        { name: "Landscape Portfolio 2", url: "https://landscape-2.y-be.tech", description: "Nature and outdoor photography gallery" },
-        { name: "Landscape Portfolio 3", url: "https://landscape-3.y-be.tech", description: "Scenic landscape photography collection" },
-        { name: "Landscape Portfolio 4", url: "https://landscape-4.y-be.tech", description: "Premium landscape photography site" }
+        { name: "Landscape Portfolio 1", url: "https://y-be.tech/demo/landscaping_demo_site_1", description: "Professional landscape photography showcase" },
+        { name: "Landscape Portfolio 2", url: "https://y-be.tech/demo/landscaping_demo_site_2", description: "Nature and outdoor photography gallery" },
+        { name: "Landscape Portfolio 3", url: "https://y-be.tech/demo/landscaping_demo_site_3", description: "Scenic landscape photography collection" },
+        { name: "Landscape Portfolio 4", url: "https://y-be.tech/demo/landscaping_demo_site_4", description: "Premium landscape photography site" }
       ]
     },
     {
       category: "Automotive",
       sites: [
-        { name: "Car Showcase 1", url: "https://car-1.y-be.tech", description: "Luxury automotive photography portfolio" },
-        { name: "Car Showcase 2", url: "https://car-2.y-be.tech", description: "Professional car photography gallery" },
-        { name: "Car Showcase 3", url: "https://car-3.y-be.tech", description: "Automotive photography collection" },
-        { name: "Car Showcase 4", url: "https://car-4.y-be.tech", description: "Premium car photography showcase" }
+        { name: "Car Showcase 1", url: "https://y-be.tech/demo/car_demo_site_1", description: "Luxury automotive photography portfolio" },
+        { name: "Car Showcase 2", url: "https://y-be.tech/demo/car_demo_site_2", description: "Professional car photography gallery" },
+        { name: "Car Showcase 3", url: "https://y-be.tech/demo/car_demo_site_3", description: "Automotive photography collection" },
+        { name: "Car Showcase 4", url: "https://y-be.tech/demo/car_demo_site_4", description: "Premium car photography showcase" }
       ]
     },
     {
       category: "Interior Design",
       sites: [
-        { name: "Interior Design 1", url: "https://interior-design-1.y-be.tech", description: "Modern interior design portfolio" },
-        { name: "Interior Design 2", url: "https://interior-design-2.y-be.tech", description: "Contemporary interior showcase" },
-        { name: "Interior Design 3", url: "https://interior-design-3.y-be.tech", description: "Luxury interior design gallery" },
-        { name: "Interior Design 4", url: "https://interior-design-4.y-be.tech", description: "Premium interior design collection" }
+        { name: "Interior Design 1", url: "https://y-be.tech/demo/interior_design_demo_site_1", description: "Modern interior design portfolio" },
+        { name: "Interior Design 2", url: "https://y-be.tech/demo/interior_design_demo_site_2", description: "Contemporary interior showcase" },
+        { name: "Interior Design 3", url: "https://y-be.tech/demo/interior_design_demo_site_3", description: "Luxury interior design gallery" },
+        { name: "Interior Design 4", url: "https://y-be.tech/demo/interior_design_demo_site_4", description: "Premium interior design collection" }
       ]
     },
     {
       category: "Corporate",
       sites: [
-        { name: "Corporate 1", url: "https://incorp-1.y-be.tech", description: "Modern corporate website template" },
-        { name: "Corporate 2", url: "https://incorp-2.y-be.tech", description: "Professional business showcase" },
-        { name: "Corporate 3", url: "https://incorp-3.y-be.tech", description: "Enterprise-level corporate site" }
+        { name: "Corporate 1", url: "https://y-be.tech/demo/incorp_demo_site_1", description: "Modern corporate website template" },
+        { name: "Corporate 2", url: "https://y-be.tech/demo/incorp_demo_site_2", description: "Professional business showcase" },
+        { name: "Corporate 3", url: "https://y-be.tech/demo/incorp_demo_site_3", description: "Enterprise-level corporate site" }
       ]
     },
     {
       category: "Travel & Lifestyle",
       sites: [
-        { name: "Travel Portfolio", url: "https://travels-1.y-be.tech", description: "Travel photography and lifestyle blog" }
+        { name: "Travel Portfolio", url: "https://y-be.tech/demo/travels_demo_site_1", description: "Travel photography and lifestyle blog" }
       ]
     }
   ]
@@ -888,7 +888,7 @@ export default function CaseStudies() {
                                 Visit Live Site
                               </div>
                               <div className="text-xs text-yb-navy-light bg-yb-beige bg-opacity-20 px-3 py-1 rounded-full text-center">
-                                {site.url.replace('https://', '')}
+                                {site.name}
                               </div>
                             </div>
                           </div>

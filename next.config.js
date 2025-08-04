@@ -50,7 +50,23 @@ const nextConfig = {
       return config
     },
   } : {}),
-  
+
+  // Rewrites for demo sites
+  async rewrites() {
+    return [
+      // Rewrite demo URLs to serve static HTML files
+      {
+        source: '/demo/:slug',
+        destination: '/demos/:slug/index.html',
+      },
+      // Handle demo assets (CSS, JS, images, etc.)
+      {
+        source: '/demo/:slug/:path*',
+        destination: '/demos/:slug/:path*',
+      },
+    ]
+  },
+
   // Headers for performance
   async headers() {
     return [
