@@ -722,7 +722,7 @@ export default function HomePage() {
                     outperforming our top 3 competitors in every metric that matters.&rdquo;
                   </p>
                   <div className="text-sm text-yb-navy-light">
-                    — Sarah Mitchell, CEO of TechFlow Solutions
+                    — Owner of Kidzee Kasavanahalli and Shilp's Art
                   </div>
                 </div>
               </div>

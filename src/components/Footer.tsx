@@ -36,10 +36,7 @@ export default function Footer() {
             {/* Contact Info */}
             <div className="space-y-2 text-base">
               <p className="text-yb-beige/80">
-                <span className="font-medium">Email:</span> contact@ybe.studio
-              </p>
-              <p className="text-yb-beige/80">
-                <span className="font-medium">Phone:</span> +1 (555) 123-4567
+                <span className="font-medium">Email:</span> info@ybe.tech
               </p>
               <p className="text-yb-beige/80">
                 <span className="font-medium">Hours:</span> Mon-Fri: 9AM-6PM EST
