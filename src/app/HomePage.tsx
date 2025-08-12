@@ -722,7 +722,7 @@ export default function HomePage() {
                     outperforming our top 3 competitors in every metric that matters.&rdquo;
                   </p>
                   <div className="text-sm text-yb-navy-light">
-                    — Owner of Kidzee Kasavanahalli and Shilp's Art
+                    — Owner of Kidzee Kasavanahalli and ShilpsArt
                   </div>
                 </div>
               </div>
